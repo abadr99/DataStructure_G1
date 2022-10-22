@@ -54,8 +54,6 @@ void     PriorityQueue_Initiate   (PriorityQueue_t *pQueue);
  * 			Data  ::
  *					The data that will be enqueue to the stack
  * @ret  : None
- * @note : This function must be used every time you want to enqueue the data to the PriorityQueue array.
- *
  * */
 void     PriorityQueue_Enqueue    (PriorityQueue_t *pQueue , QUEUE_DATA_TYPE Data);
 
@@ -65,8 +63,6 @@ void     PriorityQueue_Enqueue    (PriorityQueue_t *pQueue , QUEUE_DATA_TYPE Dat
  * @para : pQueue ::
  * 					pointer to the stack that the data will be dequeue out from it.
  * @ret  : None
- * @note  :This function must be used every time you want to dequeue the data from queue array.
- *
  * */
 void     PriorityQueue_Dequeue    (PriorityQueue_t *pQueue);
 
@@ -75,8 +71,6 @@ void     PriorityQueue_Dequeue    (PriorityQueue_t *pQueue);
  * @para : *stack ::
  * 					pointer to the queue that you want to delet it.
  * @ret  : None
- * @note : None
- *
  * */
 void     PriorityQueue_ClearQueue (PriorityQueue_t *pQueue);
 
@@ -92,8 +86,6 @@ void     PriorityQueue_ClearQueue (PriorityQueue_t *pQueue);
  *					pFun is a pointer to function which take one argument of the queue data type
  *					and return nothing
  * @ret  : None
- * @note : None
- *
  * */
 void     PriorityQueue_Traverse   (PriorityQueue_t *pQueue , void (*pFun)(QUEUE_DATA_TYPE Data));
 
@@ -105,9 +97,6 @@ void     PriorityQueue_Traverse   (PriorityQueue_t *pQueue , void (*pFun)(QUEUE_
  *
  * @ret  : Return 1 --> if the Queue is empty
  *  	   Return 0 --> if the Queue is not empty
- *
- * @note  : None
- *
  * */
 uint8_t  PriorityQueue_IsEmpty    (PriorityQueue_t *pQueue);
 
@@ -120,8 +109,6 @@ uint8_t  PriorityQueue_IsEmpty    (PriorityQueue_t *pQueue);
  *
  * @ret  : Return 1 --> if the Queue is Full
  *  	   Return 0 --> if the Queue is not Full
- *
- * @note  : None
  */
 uint8_t  PriorityQueue_IsFull     (PriorityQueue_t *pQueue);
 
@@ -133,8 +120,6 @@ uint8_t  PriorityQueue_IsFull     (PriorityQueue_t *pQueue);
  *
  *
  * @ret  : uint16_t --> return the size of the queue
- * @note : None
- *
  * */
 uint16_t PriorityQueue_GetSize    (PriorityQueue_t *pQueue);
 
@@ -146,9 +131,7 @@ uint16_t PriorityQueue_GetSize    (PriorityQueue_t *pQueue);
  * 					pointer to the queue that you want to return  the highest priority data in the queue
  *
  * @ret  : QUEUE_DATA_TYPE --> highst data priority on the queue
- * @note : None
- *
- * */
+ */
 QUEUE_DATA_TYPE PriorityQueue_GetTop (PriorityQueue_t *pQueue);
 
 

@@ -7,7 +7,8 @@
 #include "STD_TYPES.h"
 #include "Priority_Queue.h"
 
-void PubbleSort(QUEUE_DATA_TYPE Array[] , uint16_t Size)
+static void PubbleSort(QUEUE_DATA_TYPE Array[] , uint16_t Size);
+static void PubbleSort(QUEUE_DATA_TYPE Array[] , uint16_t Size)
 {
 	uint16_t i ,j;
     for( i=0 ; i<Size ; i++ )
