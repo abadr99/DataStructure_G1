@@ -12,7 +12,7 @@ void CircularQueue_Init(Queue_t *pQueue)
 
 void CircularQueue_Enqueue(Queue_t *pQueue , QUEUE_DATA_TYPE Data)
 {
-	pQueue->Rear = pQueue->Rear %QUEUE_SIZE;
+	pQueue->Rear = (pQueue->Rear)  %  QUEUE_SIZE;
 	pQueue->Array[pQueue->Rear++] = Data;
 	pQueue->Size++;
 
@@ -33,13 +33,13 @@ QUEUE_DATA_TYPE CircularQueue_GetTop(Queue_t *pQueue)
 
 uint8_t CircularQueue_IsFull(Queue_t *pQueue)
 {
-	return (pQueue->Size == QUEUE_SIZE) ? 1 : 0 ;
+	return (pQueue->Size == QUEUE_SIZE) ? TRUE : FALSE ;
 }
 
 
 uint8_t CircularQueue_IsEmpty(Queue_t *pQueue)
 {
-	return (pQueue->Size == 0) ? 1 : 0 ;
+	return (pQueue->Size == 0) ? TRUE : FALSE ;
 }
 
 
