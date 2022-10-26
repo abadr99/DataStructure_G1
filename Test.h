@@ -1,6 +1,8 @@
 #ifndef _TEST_H_
 #define _TEST_H_
-int manar(int x,int y);
+#include "STD_TYPES.h"
+#include "Priority_Queue.h"
+void Test (void);
 // TODO: @ManarAbdelraouf
 
 #endif

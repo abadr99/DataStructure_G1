@@ -6,7 +6,7 @@
  */
 #include "STD_TYPES.h"
 #include "Priority_Queue.h"
-
+#include <stdio.h>
 static void PubbleSort(QUEUE_DATA_TYPE Array[] , uint16_t Size);
 static void PubbleSort(QUEUE_DATA_TYPE Array[] , uint16_t Size)
 {
@@ -40,6 +40,7 @@ void PriorityQueue_Enqueue (PriorityQueue_t *pQueue , QUEUE_DATA_TYPE Data)
 
 void PriorityQueue_Dequeue (PriorityQueue_t *pQueue)
 {
+	printf("%d\n",pQueue->Array[pQueue->Front]);
 	pQueue->Front++;
 	pQueue->Size --;
 }

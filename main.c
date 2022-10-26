@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include "Test.h"
+#include "Priority_Queue.h"
 int main(void){
-    
-    printf("*******\n");
-  // int sum= manar(5,3);
-   printf("%d", manar(5,3));
+
+    Test();
     return 0;
 }
+
 
 
 
