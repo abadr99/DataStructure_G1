@@ -1,6 +1,6 @@
 #ifndef _TEST_H_
 #define _TEST_H_
 
-void Test (void);
+void Test_PriorityQueue (void);
 
 #endif

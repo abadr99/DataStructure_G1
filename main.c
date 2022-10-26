@@ -5,6 +5,6 @@
 /*main fnuction to call all test function to test DS functions*/
 int main()
 {
-    Test();
+    Test_PriorityQueue();
     return 0;
 }
