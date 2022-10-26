@@ -9,6 +9,7 @@ void CircularQueue_Init(Queue_t *pQueue)
 	pQueue->Size =0;
 }
 
+
 void CircularQueue_Enqueue(Queue_t *pQueue , QUEUE_DATA_TYPE Data)
 {
 	pQueue->Rear = pQueue->Rear %QUEUE_SIZE;
@@ -16,7 +17,8 @@ void CircularQueue_Enqueue(Queue_t *pQueue , QUEUE_DATA_TYPE Data)
 	pQueue->Size++;
 
 }
-voidCircularQueue_Dequeue(Queue_t *pQueue)
+
+void CircularQueue_Dequeue(Queue_t *pQueue)
 {
 	pQueue->Front = pQueue->Front %QUEUE_SIZE;
 	pQueue->Front++;

@@ -66,7 +66,7 @@ void CircularQueue_Enqueue(Queue_t *pQueue , QUEUE_DATA_TYPE Data);
  * 					pointer to the queue that the data will be dequeue out of it.
  * @ret  : None
  * */
-voidCircularQueue_Dequeue(Queue_t *pQueue);
+void CircularQueue_Dequeue(Queue_t *pQueue);
 
 
 
