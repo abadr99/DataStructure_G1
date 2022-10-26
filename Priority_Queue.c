@@ -37,6 +37,7 @@ void PriorityQueue_Enqueue (PriorityQueue_t *pQueue , QUEUE_DATA_TYPE Data)
 	pQueue->Front=0;
 }
 
+
 void PriorityQueue_Dequeue (PriorityQueue_t *pQueue)
 {
 	pQueue->Front++;
