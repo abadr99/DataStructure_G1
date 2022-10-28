@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1664486947 source:f:\mariem stack\main.c
+	<stdio.h>
+	<stdlib.h>
+	"mariem stack.h"
+
+1666961933 f:\mariem stack\mariem stack.h
+	<stdint.h>
+
+1666963219 source:f:\mariem stack\mariem stack.c
+	"mariem stack.h"
+
