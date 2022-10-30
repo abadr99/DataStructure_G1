@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Test.h"
+#include "SonicTest.h"
+#include "TestDataStructures.h"
 
-/*main fnuction to call all test function to test DS functions*/
 int main()
 {
-    Test_PriorityQueue();
+    RUN_TEST(SUM);
     return 0;
 }
