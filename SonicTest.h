@@ -21,7 +21,6 @@
 #define EXPECT_FALSE(ACTUAL)                    if(ACTUAL == EXPECTED) {__GREEN printf("[PASS]   : ");__DEFAULT printf("EXPECTED : 0\t");__DEFAULT printf("\t\tFOUND : %d\t\n",ACTUAL);}\
                                                 else  { __RED printf("[FAILED] : "); __DEFAULT printf("EXPECTED : 0\t");__DEFAULT printf("\t\tFOUND : %d\t\n",ACTUAL);}
 
-// TODO : @ABadr solving a warning issue
 #define RUN_TEST(testName)						 _##TEST##_##testName##_\
 													();
 
