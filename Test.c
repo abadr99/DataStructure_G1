@@ -1,52 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "PriorityQueue.h"
+#include "SonicTest.h"
 #include "Test.h"
 
-// TODO @manar: adding printing lines
-void Test_PriorityQueue (void) {
-	
-	PriorityQueue_t PQ;
 
-    if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Initiate(&PQ);
-    }
-
-    if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Enqueue(&PQ, 20);
-    }
-
-	if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Enqueue(&PQ, 10);
-    }
-
-	if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Enqueue(&PQ, 30);
-    }
-
-	if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Enqueue(&PQ, 50);
-    }
-
-	if(!PriorityQueue_IsFull(&PQ)) {
-		PriorityQueue_Enqueue(&PQ, 40);
-    }
-	
-	if(!PriorityQueue_IsEmpty(&PQ)){
-		PriorityQueue_Dequeue(&PQ);
-    }
-
-	if(!PriorityQueue_IsEmpty(&PQ)){
-		PriorityQueue_Dequeue(&PQ);
-    }
-
-	if(!PriorityQueue_IsEmpty(&PQ)){
-		PriorityQueue_Dequeue(&PQ);
-    }
-
-	if(!PriorityQueue_IsEmpty(&PQ)){
-		PriorityQueue_Dequeue(&PQ);
-    }   
+int sum(int x , int y)
+{
+	return x+y;
 }
 
-// TODO @mRefat: adding CircularQueueArray test
+TEST(SUM)
+{
+	START_TEST(SUM);
+	EXPECT_EQ(5,sum(2,3));
+	EXPECT_EQ(9,sum(4,3));  // write a woring test case
+}
