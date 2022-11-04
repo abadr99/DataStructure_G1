@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include "SonicTest.h"
 #include "TestDataStructures.h"
-
 int main()
 {
-    RUN_TEST(SUM);
+    RUN_TEST(DoublyLinkedList); 
     return 0;
 }
+
+  
