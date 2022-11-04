@@ -161,7 +161,6 @@ void DoublyLinkedList_ReplaceNode(DoublyLinkedList_t *pList , uint32_t Position 
 void DoublyLinkedList_DestroyList(DoublyLinkedList_t *pList )
 {
 	Node_t *pLocTempNode;
-	//uint32_t i ;
 	while(pList->pHead)
 	{
 		pLocTempNode=pList->pHead->pNext;
@@ -169,6 +168,7 @@ void DoublyLinkedList_DestroyList(DoublyLinkedList_t *pList )
 		pList->pHead = pLocTempNode ;
 	}
 	pList->Size = 0 ;
+	pList->pTail = NULL_ptr;
 
 }
 void DoublyLinkedList_Traverse(DoublyLinkedList_t *pList , void (*pFun)(LINKEDLIST_TYPE Data))
