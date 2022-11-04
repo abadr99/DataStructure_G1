@@ -169,7 +169,6 @@ void DoublyLinkedList_DestroyList(DoublyLinkedList_t *pList )
 	}
 	pList->Size = 0 ;
 	pList->pTail = NULL_ptr;
-
 }
 void DoublyLinkedList_Traverse(DoublyLinkedList_t *pList , void (*pFun)(LINKEDLIST_TYPE Data))
 {
@@ -194,38 +193,3 @@ uint32_t DoublyLinkedList_GetSize(DoublyLinkedList_t *pList )
 {
 	return pList->Size;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
