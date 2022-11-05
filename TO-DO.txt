@@ -6,3 +6,4 @@ TODO :
     C) Priority Queue
     D) LinkedLists : single, doubly, ..
 3) README
+4) Applications
