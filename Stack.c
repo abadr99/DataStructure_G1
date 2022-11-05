@@ -1,6 +1,6 @@
 #include "Stack.h"
 #if STACK_TYPE == STACK_ARRAY
-//.c related stack array
+
 void Stack_Init(Stack_t *stack)
 {
   stack->LastIndex=0;
@@ -48,8 +48,8 @@ void Clear_Stack(Stack_t* stack)
 {
 	stack->LastIndex=0;
 }
-//*******************************************
-//.c related stack linked
+
+
 #elif STACK_TYPE == LINKED_STACK
 void Stack_Init(Stack_t *stack)
 {
@@ -85,7 +85,7 @@ void Stack_Traverse(Stack_t *stack,void (*ptr_func)(STACK_DATA_TYPE* x))
 	Node_t*p=stack->pTop;
 	while(p)
 	{
-		(*ptr_func)(p->Value);
+		(*ptr_func)(&p->Value);
 		p=p->pPrevNode;
 	}
 }

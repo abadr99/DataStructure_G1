@@ -1,7 +1,7 @@
-#include "Stack_Config.h"
+
 #ifndef STACK_H_
 #define STACK_H_
-
+#include "Stack_Config.h"
 #if STACK_TYPE == STACK_ARRAY
 typedef struct
 {
