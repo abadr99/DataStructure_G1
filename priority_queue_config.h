@@ -2,7 +2,7 @@
  * priority_queue_config.h
  *
  *  Created on: Nov 4, 2022
- *      Author: Compu Tech
+ *      Author: mariam ahmed
  */
 
 #ifndef PRIORITY_QUEUE_CONFIG_H_
@@ -11,8 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdint.h>
-//#include "priority_queuee.h"
+
+#include "STD_TYPES.h"
 #define LINKED_INC_PQUEUE 3
 #define LINKED_DEC_PQUEUE  4
 #define ARRAY_INC_PQUEUE 5
@@ -21,8 +21,8 @@
 typedef uint16_t QueueEntry;
 
 
-#define MAX 10
+#define PQ_MAX_SIZE 10
 
-#define TYPE (LINKED_INC_PQUEUE)
+#define PQ_TYPE (LINKED_DEC_PQUEUE)
 
 #endif /* PRIORITY_QUEUE_CONFIG_H_ */

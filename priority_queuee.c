@@ -2,19 +2,19 @@
  * priority_queuee.c
  *
  *  Created on: Nov 4, 2022
- *      Author: Compu Tech
+ *      Author: mariam ahmed
  */
 
 #include "priority_queue_config.h"
 #include "priority_queuee.h"
-#if TYPE == LINKED_DEC_PQUEUE
+#if PQ_TYPE == LINKED_DEC_PQUEUE
 
-void CreatQueue(Queue*q){
+void PriorityQueue_CreateQueue(PriorityQueue_t*q){
 q->front=NULL;
 q->rear=NULL;
 q->size=0;
 }
-void EnQueue(Queue *q,QueueEntry Data){
+void PriorityQueue_EnQueue(PriorityQueue_t *q,QueueEntry Data){
 	QueueNode_t*p=(QueueNode_t*)malloc(sizeof(QueueNode_t));
 	QueueEntry temp;
 	p->next=NULL;
@@ -35,33 +35,60 @@ void EnQueue(Queue *q,QueueEntry Data){
 	    }
 	}
 }
-QueueEntry DeQueue(Queue *q){
+QueueEntry PriorityQueue_DeQueue(PriorityQueue_t *q){
 	QueueNode_t*p=q->front;
+	QueueEntry x=q->front->value;
 	q->front=p->next;
 	free(p);
 	if((q->front)==NULL){
 		q->rear=NULL;
 	}
 	q->size--;
-	return q->front->value;
+	return x;
 }
-QueueEntry QueueSize(Queue *q){
+uint16_t PriorityQueue_GetQueueSize(PriorityQueue_t *q){
 	return (q->size);
 }
-void QueueTraverse(Queue *q,void(*fun)(QueueEntry Data)){
+void PriorityQueue_TraverseQueue(PriorityQueue_t *q,void(*fun)(QueueEntry Data)){
 	QueueNode_t*p;
 	for(p=q->front;p;p=p->next)
 	{
 		(*fun)(p->value);
 	}
 }
-#elif TYPE == LINKED_INC_PQUEUE
-void CreatQueue(Queue*q){
+void     PriorityQueue_ClearQueue (PriorityQueue_t *pQueue)
+{
+
+while(pQueue->front)
+{
+	pQueue->rear=pQueue->front->next;
+	free(pQueue->front);
+	pQueue->front=pQueue->rear;
+}
+pQueue->size=0;
+
+}
+uint8_t  PriorityQueue_IsEmpty    (PriorityQueue_t *pQueue)
+{
+return (pQueue->front==0);
+
+}
+uint8_t  PriorityQueue_IsFull     (PriorityQueue_t *pQueue)
+{
+	return 0;
+
+}
+QueueEntry PriorityQueue_GetTop (PriorityQueue_t *pQueue)
+{
+	return (pQueue->rear->value);
+}
+#elif PQ_TYPE == LINKED_INC_PQUEUE
+void PriorityQueue_CreateQueue(PriorityQueue_t*q){
 q->front=NULL;
 q->rear=NULL;
 q->size=0;
 }
-void EnQueue(Queue *q,QueueEntry Data){
+void PriorityQueue_EnQueue(PriorityQueue_t *q,QueueEntry Data){
 	QueueNode_t*p=(QueueNode_t*)malloc(sizeof(QueueNode_t));
 	QueueEntry temp;
 	p->next=NULL;
@@ -82,29 +109,57 @@ void EnQueue(Queue *q,QueueEntry Data){
 	    }
 	}
 }
-QueueEntry DeQueue(Queue *q){
+QueueEntry PriorityQueue_DeQueue(PriorityQueue_t *q){
 	QueueNode_t*p=q->front;
+	QueueEntry x=q->front->value;
 	q->front=p->next;
 	free(p);
 	if((q->front)==NULL){
 		q->rear=NULL;
 	}
 	q->size--;
-	return q->front->value;
+	return x;
 }
-QueueEntry QueueSize(Queue *q){
+uint16_t PriorityQueue_GetQueueSize(PriorityQueue_t *q){
 	return (q->size);
 }
-void QueueTraverse(Queue *q,void(*fun)(QueueEntry Data)){
+void PriorityQueue_TraverseQueue(PriorityQueue_t *q,void(*fun)(QueueEntry Data)){
 	QueueNode_t*p;
 	for(p=q->front;p;p=p->next)
 	{
 		(*fun)(p->value);
 	}
 }
-#elif TYPE == ARRAY_DEC_PQUEUE
+void     PriorityQueue_ClearQueue (PriorityQueue_t *pQueue)
+{
 
-void PubbleSort(QueueEntry Array[] , uint16_t Size)
+while(pQueue->front)
+{
+	pQueue->rear=pQueue->front->next;
+	free(pQueue->front);
+	pQueue->front=pQueue->rear;
+}
+pQueue->size=0;
+
+}
+uint8_t  PriorityQueue_IsEmpty    (PriorityQueue_t *pQueue)
+{
+return (pQueue->front==0);
+
+}
+uint8_t  PriorityQueue_IsFull     (PriorityQueue_t *pQueue)
+{
+	return 0;
+
+}
+QueueEntry PriorityQueue_GetTop (PriorityQueue_t *pQueue)
+{
+	return (pQueue->rear->value);
+}
+
+#elif PQ_TYPE == ARRAY_DEC_PQUEUE
+
+void BubbleSort(QueueEntry Array[] , uint16_t Size)
 {
 	uint16_t i ,j;
     for( i=0 ; i<Size ; i++ )
@@ -121,23 +176,24 @@ void PubbleSort(QueueEntry Array[] , uint16_t Size)
     }
 }
 
-void PriorityQueue_Initiate(PriorityQueue_t *pQueue)
+void PriorityQueue_CreateQueue(PriorityQueue_t *pQueue)
 {
 	pQueue->Front= 0;
 	pQueue->Size = 0;
 }
 
-void PriorityQueue_Enqueue (PriorityQueue_t *pQueue , QueueEntry Data)
+void PriorityQueue_EnQueue (PriorityQueue_t *pQueue , QueueEntry Data)
 {
 	pQueue->Array[pQueue->Size++]=Data;
-	PubbleSort(pQueue->Array, pQueue->Size);
+	BubbleSort(pQueue->Array, pQueue->Size);
 	pQueue->Front=0;
 }
 
-void PriorityQueue_Dequeue (PriorityQueue_t *pQueue)
-{
+QueueEntry PriorityQueue_DeQueue (PriorityQueue_t *pQueue)
+{ QueueEntry x=pQueue->Array[pQueue->Front];
 	pQueue->Front++;
 	pQueue->Size --;
+	return x;
 }
 
 
@@ -149,11 +205,11 @@ uint8_t PriorityQueue_IsEmpty (PriorityQueue_t *pQueue)
 
 uint8_t PriorityQueue_IsFull  (PriorityQueue_t *pQueue)
 {
-	return (pQueue->Size==MAX) ? 1 : 0 ;
+	return (pQueue->Size==PQ_MAX_SIZE) ? TRUE : FALSE ;
 }
 
 
-uint16_t PriorityQueue_GetSize (PriorityQueue_t *pQueue)
+uint16_t PriorityQueue_GetQueueSize (PriorityQueue_t *pQueue)
 {
 	return pQueue->Size;
 }
@@ -169,7 +225,7 @@ void PriorityQueue_ClearQueue (PriorityQueue_t *pQueue)
 	pQueue->Size=0;
 }
 
-void PriorityQueue_Traverse (PriorityQueue_t *pQueue , void (*pFun)(QueueEntry Data))
+void PriorityQueue_TraverseQueue (PriorityQueue_t *pQueue , void (*pFun)(QueueEntry Data))
 {
 	uint16_t Loc_Counter;
 	for(Loc_Counter=0 ; Loc_Counter<pQueue->Size ; Loc_Counter++)
@@ -179,9 +235,9 @@ void PriorityQueue_Traverse (PriorityQueue_t *pQueue , void (*pFun)(QueueEntry D
 }
 
 
-#elif TYPE == ARRAY_INC_PQUEUE
+#elif PQ_TYPE == ARRAY_INC_PQUEUE
 
-void PubbleSort(QueueEntry Array[] , uint16_t Size)
+void BubbleSort(QueueEntry Array[] , uint16_t Size)
 {
 	uint16_t i ,j;
     for( i=0 ; i<Size ; i++ )
@@ -198,23 +254,24 @@ void PubbleSort(QueueEntry Array[] , uint16_t Size)
     }
 }
 
-void PriorityQueue_Initiate(PriorityQueue_t *pQueue)
+void PriorityQueue_CreateQueue(PriorityQueue_t *pQueue)
 {
 	pQueue->Front= 0;
 	pQueue->Size = 0;
 }
 
-void PriorityQueue_Enqueue (PriorityQueue_t *pQueue , QueueEntry Data)
+void PriorityQueue_EnQueue (PriorityQueue_t *pQueue , QueueEntry Data)
 {
 	pQueue->Array[pQueue->Size++]=Data;
-	PubbleSort(pQueue->Array, pQueue->Size);
+	BubbleSort(pQueue->Array, pQueue->Size);
 	pQueue->Front=0;
 }
 
-void PriorityQueue_Dequeue (PriorityQueue_t *pQueue)
-{
+QueueEntry PriorityQueue_DeQueue (PriorityQueue_t *pQueue)
+{ QueueEntry x=pQueue->Array[pQueue->Front];
 	pQueue->Front++;
 	pQueue->Size --;
+	return x;
 }
 
 
@@ -226,11 +283,11 @@ uint8_t PriorityQueue_IsEmpty (PriorityQueue_t *pQueue)
 
 uint8_t PriorityQueue_IsFull  (PriorityQueue_t *pQueue)
 {
-	return (pQueue->Size==MAX) ? 1 : 0 ;
+	return (pQueue->Size==PQ_MAX_SIZE) ? 1 : 0 ;
 }
 
 
-uint16_t PriorityQueue_GetSize (PriorityQueue_t *pQueue)
+uint16_t PriorityQueue_GetQueueSize (PriorityQueue_t *pQueue)
 {
 	return pQueue->Size;
 }
@@ -246,7 +303,7 @@ void PriorityQueue_ClearQueue (PriorityQueue_t *pQueue)
 	pQueue->Size=0;
 }
 
-void PriorityQueue_Traverse (PriorityQueue_t *pQueue , void (*pFun)(QueueEntry Data))
+void PriorityQueue_TraverseQueue (PriorityQueue_t *pQueue , void (*pFun)(QueueEntry Data))
 {
 	uint16_t Loc_Counter;
 	for(Loc_Counter=0 ; Loc_Counter<pQueue->Size ; Loc_Counter++)
