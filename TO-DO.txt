@@ -1,9 +1,0 @@
-TODO : 
-1) Fix align problem at sonic test
-2) Upload all DS :
-    a) STACK
-    b) QUEUE 
-    C) Priority Queue
-    D) LinkedLists : single, doubly, ..
-3) README
-4) Applications
