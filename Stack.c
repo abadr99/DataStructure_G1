@@ -85,7 +85,7 @@ void Stack_Traverse(Stack_t *stack,void (*ptr_func)(STACK_DATA_TYPE* x))
 	Node_t*p=stack->pTop;
 	while(p)
 	{
-		(*ptr_func)(p->Value);
+		(*ptr_func)(&p->Value);
 		p=p->pPrevNode;
 	}
 }

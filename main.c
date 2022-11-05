@@ -5,6 +5,7 @@
 int main()
 {
     RUN_TEST(DoublyLinkedList); 
+    RUN_TEST(LinkedStack_byLinkedList);
     return 0;
 }
 

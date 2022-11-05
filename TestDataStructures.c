@@ -4,6 +4,7 @@
 #include "SonicTest.h"
 #include "TestDataStructures.h"
 #include "DoublyLinkedList.h"
+#include "LinkedStack_byLinkedList.h"
 
 TEST(DoublyLinkedList)
 {
@@ -42,4 +43,28 @@ TEST(DoublyLinkedList)
 	DoublyLinkedList_DeleteNode(&L1, 3);
 	x = DoublyLinkedList_GetSize(&L1);
 	EXPECT_EQ(2,x);
+}
+TEST(LinkedStack_byLinkedList)
+{
+	START_TEST(LinkedStack_byLinkedList);
+	StackList_t stack;
+	LinkedStack_Init(&stack);
+	LinkedStack_Push(&stack,10);
+  	LinkedStack_Push(&stack,20);
+ 	LinkedStack_Push(&stack,30);
+ 	LinkedStack_Push(&stack,40);
+	uint32_t size = DoublyLinkedList_GetSize(&stack);
+	EXPECT_EQ(4,size);
+
+	uint32_t top;
+	LinkedStack_GetTop(&stack,&top);
+	EXPECT_EQ(40,top);
+
+	LinkedStack_Pop(&stack);
+    LinkedStack_GetTop(&stack,&top);
+	EXPECT_EQ(30,top);
+
+	LinkedStack_ClearStack(&stack);
+	size = DoublyLinkedList_GetSize(&stack);
+	EXPECT_EQ(0,size);
 }
