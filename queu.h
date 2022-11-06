@@ -13,8 +13,7 @@ typedef struct queue {
     uint16_t size;
     struct node *front, *rear;
 }queue_t;
- static node*newnode(uint16_t val);
- queue_t* queue_initialize(queue_t*q);
+ void queue_initialize(queue_t*q);
  void queue_enqueue(queue_t* q, uint16_t val);
 uint16_t queue_dequeue(queue_t* q);
  uint16_t queue_GetSize(queue_t* q);
