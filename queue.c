@@ -1,5 +1,5 @@
 #include "obj\conf.h"
-#ifdef linked
+#if QUEUE_TYPE ==QUEUE_LINKED
 typedef struct node {
     int key;
     struct node* next;
@@ -10,14 +10,7 @@ typedef struct queue {
     struct node *front, *rear;
 }queue_t;
 
- static node*newnode(int val)
-{
-    node* temp
-        = (node*)malloc(sizeof(node));
-    temp->key = val;
-    temp->next = 0;
-    return temp;
-}
+
 queue_t* queue_initialize(queue_t*q)
 {
 
@@ -27,33 +20,36 @@ queue_t* queue_initialize(queue_t*q)
 }
 void queue_enqueue(queue_t* q, int val)
 {
-(q->size)++;
-     node* temp = newnode(val);
-
-
+    (q->size)++;
+    node* newnode= (node*)malloc(sizeof(node));
+    newnode ->key = val;
+    newnode->next = 0;
     if (q->rear == 0) {
-        q->front = q->rear = temp;
+        q->front = q->rear = newnode;
         return;
     }
-    q->rear->next = temp;
-    q->rear = temp;
+    q->rear->next = newnode;
+    q->rear = newnode;
 }
-void queue_dequeue(queue_t* q)
-{
+int queue_dequeue(queue_t* q)
+{int val;
 (q->size)--;
     if (q->front == 0)
         return;
      node* temp = q->front;
-
+    val=q->front->key;
     q->front = q->front->next;
 
 
     if (q->front == 0)
+       {
         q->rear = 0;
+       }
 
     free(temp);
+    return val;
 }
-int queue_getsize(queue_t* q)
+int queue_GetSize(queue_t* q)
 {
     return q->size;
 }
@@ -84,25 +80,25 @@ int queue_pop (queue_t*q)
 q->size--;
     return q->arr[(q->i)-1];
 }
-int queue_isEmpty(queue_t*q)
+int queue_IsEmpty(queue_t*q)
 {int val;
     if(q->size==0){val=1;}
     return val;
 }
-int queue_isFull(queue_t*q)
+int queue_IsFull(queue_t*q)
 {int val;
     if(q->size==arraysize){val=1;}
     return val;
 }
-int queue_getfront(queue_t *q)
+int queue_GetFront(queue_t *q)
 {
     return q->arr[q->i];
 }
-int queue_getback(queue_t *q)
+int queue_GetBack(queue_t *q)
 {
     return q->arr[(q->size)-1];
 }
-int queue_getSize(queue_t*q)
+int queue_GetSize(queue_t*q)
 {
     return q->size;
 }
