@@ -40,7 +40,7 @@ TEST(DoublyLinkedList)
 	EXPECT_EQ(100,x);
 
 	DoublyLinkedList_DeleteNode(&L1, 0);
-	DoublyLinkedList_DeleteNode(&L1, 3);
+	// DoublyLinkedList_DeleteNode(&L1, 3);
 	x = DoublyLinkedList_GetSize(&L1);
 	EXPECT_EQ(2,x);
 }
