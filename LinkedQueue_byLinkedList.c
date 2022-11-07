@@ -2,19 +2,19 @@
 
 void LinkedQueue_Init(QueueList_t *queue)
 {
-	DoublyLinkedList_Init(queue );
+	DoublyLinkedList_Init(queue);
 }
 void LinkedQueue_EnQueue(QueueList_t *queue,LINKEDLIST_TYPE Data)
 {
 	DoublyLinkedList_InsertNode(queue,queue->Size,Data);
 }
-void LinkedQueue_GetTop(QueueList_t* stack,LINKEDLIST_TYPE* Data)
+void LinkedQueue_GetTop(QueueList_t* queue,LINKEDLIST_TYPE* Data)
 {
 	*Data=DoublyLinkedList_ReadNode(queue,(queue->Size)-1);
 }
 void LinkedQueue_DeQueue(QueueList_t *queue)
 {
-    DoublyLinkedList_DeleteNode(queue,(queue->Size)-1);
+    DoublyLinkedList_DeleteNode(queue,0);
 }
 uint8_t LinkedQueue_IsFull(QueueList_t *queue)
 {
