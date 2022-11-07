@@ -95,7 +95,7 @@ TEST(LinkedQueue_byLinkedList)
 	 LinkedQueue_Init(&queue);
 	 LinkedQueue_EnQueue(&queue,5);
 	 LinkedQueue_EnQueue(&queue,7);
-	 uint8_t y= LinkedQueue_IsFull(&queue);
+	 uint8_t y = LinkedQueue_IsFull(&queue);
 	 EXPECT_EQ(0,y);
    }
 }
