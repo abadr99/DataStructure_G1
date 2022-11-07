@@ -3,4 +3,5 @@
 
 TEST(DoublyLinkedList);
 TEST(LinkedStack_byLinkedList);
+TEST(LinkedQueue_byLinkedList);
 #endif

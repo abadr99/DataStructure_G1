@@ -5,7 +5,7 @@
 #include "TestDataStructures.h"
 #include "DoublyLinkedList.h"
 #include "LinkedStack_byLinkedList.h"
-
+#include "LinkedQueue_byLinkedList.h"
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -67,4 +67,27 @@ TEST(LinkedStack_byLinkedList)
 	LinkedStack_ClearStack(&stack);
 	size = DoublyLinkedList_GetSize(&stack);
 	EXPECT_EQ(0,size);
+}
+TEST(LinkedQueue_byLinkedList)
+{
+   START_TEST(LinkedQueue_byLinkedList)
+   {
+	QueueList_t queue;
+     LinkedQueue_Init(&queue);
+	 LinkedQueue_EnQueue(&queue,10);
+	 LinkedQueue_EnQueue(&queue,20);
+	 LinkedQueue_EnQueue(&queue,30);
+	 LinkedQueue_EnQueue(&queue,40);
+	 LinkedQueue_EnQueue(&queue,50);
+	 LinkedQueue_EnQueue(&queue,60);
+	 uint32_t size=LinkedQueue_GetSize(&queue);
+	 EXPECT_EQ(6,size);
+	 uint32_t top;
+	 LinkedQueue_GetTop(&queue,&top);
+	 EXPECT_EQ(60,top);
+	 LinkedQueue_DeQueue(&queue);
+	 LinkedQueue_DeQueue(&queue);
+	 size=LinkedQueue_GetSize(&queue);
+	 EXPECT_EQ(4,size);
+   }
 }
