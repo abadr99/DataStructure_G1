@@ -15,14 +15,15 @@ typedef struct queue {
 }queue_t;
 
 
-void queue_initialize(queue_t*q)
+void queue_Initialize(queue_t*q)
 {
 
     q->front = q->rear = 0;
    q-> size=0;
 
 }
-void queue_enqueue(queue_t* q, uint16_t val)
+
+void queue_Enqueue(queue_t* q, uint16_t val)
 {
     (q->size)++;
     node* newnode= (node*)malloc(sizeof(node));
@@ -35,13 +36,12 @@ void queue_enqueue(queue_t* q, uint16_t val)
     q->rear->next = newnode;
     q->rear = newnode;
 }
-uint16_t queue_dequeue(queue_t* q)
+uint16_t queue_Dequeue(queue_t* q)
 {
 uint16_t val;
-(q->size)--;
-    if (q->front == 0)
-        {}
-    else{
+    (q->size)--;
+    assert( (!(q->front == 0))  && "the queue is arleady empty! ");
+   
      node* temp = q->front;
     val=q->front->key;
     q->front = q->front->next;
@@ -54,7 +54,7 @@ uint16_t val;
 
     free(temp);
     return val;}
-}
+
 uint16_t queue_GetSize(queue_t* q)
 {
     return q->size;
@@ -72,16 +72,16 @@ uint16_t arr[arraysize];
 uint16_t i;
 }queue_t;
 
-void queue_initiate(queue_t*q)
+void queue_Initiate(queue_t*q)
 {q->i=0;
     q->size=0;
 }
-void queue_push( queue_t*q,uint16_t val)
+void queue_Push( queue_t*q,uint16_t val)
 {
     q->arr[q->size]=val;
     (q->size)++;
 }
-uint16_t queue_pop (queue_t*q)
+uint16_t queue_Pop (queue_t*q)
 {q->i++;
 q->size--;
     return q->arr[(q->i)-1];
