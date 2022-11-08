@@ -68,7 +68,7 @@ uint16_t queue_GetSize(queue_t* q)
 typedef struct queuearray
 {
 uint16_t size;
-uint16_t arr[arraysize];
+uint16_t arr[Array_Size];
 uint16_t i;
 }queue_t;
 
