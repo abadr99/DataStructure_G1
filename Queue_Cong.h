@@ -9,10 +9,10 @@
 
 #if QUEUE_TYPE == QUEUE_ARRAY
 //if you want to change the size ,replace 100 with your size.
-#define arraysize    (100)
-#endif
+#define Array_Size    (100)
+#endif //QUEUE_TYPE != QUEUE_ARRAY
 #if QUEUE_TYPE != QUEUE_ARRAY  && QUEUE_TYPE != QUEUE_LINKED
 
 #error "Error in defining QUEUE_TYPE "
-#endif
+#endif //NO ERROR
 #endif // CONF_H_INCLUDED
