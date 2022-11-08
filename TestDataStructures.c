@@ -82,16 +82,20 @@ TEST(LinkedQueue_byLinkedList)
 	 LinkedQueue_EnQueue(&queue,60);
 	 uint32_t size=LinkedQueue_GetSize(&queue);
 	 EXPECT_EQ(6,size);
+
 	 uint32_t top;
 	 LinkedQueue_GetTop(&queue,&top);
 	 EXPECT_EQ(60,top);
+
 	 LinkedQueue_DeQueue(&queue);
 	 LinkedQueue_DeQueue(&queue);
 	 size=LinkedQueue_GetSize(&queue);
 	 EXPECT_EQ(4,size);
+
 	 LinkedQueue_ClearQueue(&queue);
 	 uint8_t x=LinkedQueue_IsEmpty(&queue);
 	 EXPECT_EQ(1,x);
+	 
 	 LinkedQueue_Init(&queue);
 	 LinkedQueue_EnQueue(&queue,5);
 	 LinkedQueue_EnQueue(&queue,7);
