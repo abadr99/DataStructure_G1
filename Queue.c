@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "conf.h"
+#include "Queue_Config.h"
 #include "STD_TYPES.h"
 #include <assert.h>
 #if QUEUE_TYPE ==QUEUE_LINKED
