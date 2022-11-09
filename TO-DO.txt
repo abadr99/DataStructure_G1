@@ -1,4 +1,5 @@
-TODO : 
+TODO :
+======
 1) Fix align problem at sonic test
 2) Upload all DS :
     a) STACK
@@ -8,6 +9,9 @@ TODO :
 3) README
 4) Adding script to :
       - Remove all comments 
-      - Check if the files name has the same naming rule
-      - Check if the functions name has the same naming rule 
+      - [DONE] : Check if the files name has the same naming rule
+      - Check if the functions name has the same naming rule
+      - check if #include "STD_TYPES.h" exsist
+      - [DONE] : Check if the guard macros exsist
+3) [TO-DO] : check for comments and remove it {adding options if the comment is very necessary we have to add # before it e.g. // #Comment}
 5) MakeFile
