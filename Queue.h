@@ -1,6 +1,6 @@
 #ifndef QUEU_H_INCLUDED
 #define QUEU_H_INCLUDED
-#include"conf.h"
+#include"Queue_Config.h"
 #include "STD_TYPES.h"
 
 #if QUEUE_TYPE ==QUEUE_LINKED
