@@ -10,3 +10,4 @@ TODO :
       - Remove all comments 
       - Check if the files name has the same naming rule
       - Check if the functions name has the same naming rule 
+5) MakeFile
