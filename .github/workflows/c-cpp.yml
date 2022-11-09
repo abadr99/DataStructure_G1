@@ -1,0 +1,64 @@
+# Name of workflow to be displyed on Github Console
+name: Build and Test Go Application
+
+# Triggers the workflow on separate events 
+on:
+  push:
+    # Trigger the worflow on push event for all branches
+    branches:
+      -  '**'  
+  pull_request:
+    # Trigger the worflow on pull request event for main branch
+    branches:
+      - main
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # "build" workflow
+  build:
+
+    name: Build and Test Go Application
+    #The type of runner on which job will run
+    runs-on: ubuntu-latest
+
+    # steps can run commands, setup tasks or run an action
+    steps: 
+      - name: Setup Go 1.16
+        # uses selects an action to run as part of a step in your job.
+        # This action sets up a go environment for use in actions
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.16.3'
+
+      - name: Checkout Source Code
+        # action/checkout@v2 checks-out your repo under github workspace.
+        uses: actions/checkout@v2
+
+      # Run build on the code
+      - name: Build
+        env: 
+          GOPROXY: "https://proxy.golang.org"
+        # run runs command-line programs using the operating system's shell.
+        run: go build -v ./...
+
+      # Run test cases on the code
+      - name: Test Cases
+        run: go test -v ./...
+
+      # Run go vet on the code
+      - name: Check go vet 
+        run: go vet ./...
+
+      # Run gofmt on the code
+      - name: Check Formatting using go fmt
+        run: |
+              gofmt -s -l .
+                        
+              if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+
+      # Run go lint on the code
+      - name: Run go lint 
+        run: |
+              curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.26.0
+
+              golangci-lint run
