@@ -5,6 +5,8 @@
 #include "TestDataStructures.h"
 #include "DoublyLinkedList.h"
 #include "LinkedStack_byLinkedList.h"
+#include "LinkedQueue_byLinkedList.h"
+#include "priority_queuee.h"
 
 TEST(DoublyLinkedList)
 {
@@ -40,7 +42,7 @@ TEST(DoublyLinkedList)
 	EXPECT_EQ(100,x);
 
 	DoublyLinkedList_DeleteNode(&L1, 0);
-	DoublyLinkedList_DeleteNode(&L1, 3);
+	// DoublyLinkedList_DeleteNode(&L1, 3);
 	x = DoublyLinkedList_GetSize(&L1);
 	EXPECT_EQ(2,x);
 }
@@ -67,4 +69,59 @@ TEST(LinkedStack_byLinkedList)
 	LinkedStack_ClearStack(&stack);
 	size = DoublyLinkedList_GetSize(&stack);
 	EXPECT_EQ(0,size);
+}
+TEST(LinkedQueue_byLinkedList)
+{
+   START_TEST(LinkedQueue_byLinkedList)
+   {
+	QueueList_t queue;
+     LinkedQueue_Init(&queue);
+	 LinkedQueue_EnQueue(&queue,10);
+	 LinkedQueue_EnQueue(&queue,20);
+	 LinkedQueue_EnQueue(&queue,30);
+	 LinkedQueue_EnQueue(&queue,40);
+	 LinkedQueue_EnQueue(&queue,50);
+	 LinkedQueue_EnQueue(&queue,60);
+	 uint32_t size=LinkedQueue_GetSize(&queue);
+	 EXPECT_EQ(6,size);
+	 uint32_t top;
+	 LinkedQueue_GetTop(&queue,&top);
+	 EXPECT_EQ(60,top);
+	 LinkedQueue_DeQueue(&queue);
+	 LinkedQueue_DeQueue(&queue);
+	 size=LinkedQueue_GetSize(&queue);
+	 EXPECT_EQ(4,size);
+   }
+}
+TEST(priority_queuee)
+{
+    START_TEST(priority_queuee)
+    {
+        PriorityQueue_t q;
+        PriorityQueue_CreateQueue(&q);
+        PriorityQueue_EnQueue(&q,3);
+        PriorityQueue_EnQueue(&q,5);
+        PriorityQueue_EnQueue(&q,4);
+        PriorityQueue_EnQueue(&q,2);
+        PriorityQueue_EnQueue(&q,9);
+        uint8_t Is_Empty =  PriorityQueue_IsEmpty (&q);
+       
+
+        EXPECT_FALSE(Is_Empty);
+        uint16_t size=PriorityQueue_GetQueueSize(&q);
+        EXPECT_EQ(5,size);
+        QueueEntry element=PriorityQueue_DeQueue(&q);
+        EXPECT_EQ(9,element);
+        QueueEntry top=PriorityQueue_GetTop(&q);
+        EXPECT_EQ(2,top);
+        PriorityQueue_ClearQueue (&q);
+        size=PriorityQueue_GetQueueSize(&q);
+        EXPECT_EQ(0,size);
+        Is_Empty =  PriorityQueue_IsEmpty (&q);
+        EXPECT_TRUE(Is_Empty);
+        uint8_t Is_Full =  PriorityQueue_IsFull (&q);
+        EXPECT_FALSE(Is_Full);
+
+    }
+
 }
