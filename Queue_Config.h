@@ -9,10 +9,10 @@
 
 #if QUEUE_TYPE == QUEUE_ARRAY
 //if you want to change the size ,replace 100 with your size.
-#define Array_Size    (100)
-#endif //QUEUE_TYPE != QUEUE_ARRAY
+#define ARRAY_SIZE    (100)
+#endif
 #if QUEUE_TYPE != QUEUE_ARRAY  && QUEUE_TYPE != QUEUE_LINKED
 
-#error "Error in defining QUEUE_TYPE "
-#endif //NO ERROR
+#error "ERROR IN DEFINING QUEUE_TYPE @Queue_Config.h "
+#endif
 #endif // CONF_H_INCLUDED
