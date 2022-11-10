@@ -38,3 +38,4 @@ uint8_t  DoublyLinkedList_IsFull(DoublyLinkedList_t *pList );
 uint32_t DoublyLinkedList_GetSize(DoublyLinkedList_t *pList );
 
 #endif /* DOUBLYLINKEDLIST_H_ */
+
