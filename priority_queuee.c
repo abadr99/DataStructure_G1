@@ -277,13 +277,13 @@ QueueEntry PriorityQueue_DeQueue (PriorityQueue_t *pQueue)
 
 uint8_t PriorityQueue_IsEmpty (PriorityQueue_t *pQueue)
 {
-	return (pQueue->Size==0) ? 1 : 0 ;
+	return (pQueue->Size==0) ? TRUE : FALSE ;
 }
 
 
 uint8_t PriorityQueue_IsFull  (PriorityQueue_t *pQueue)
 {
-	return (pQueue->Size==PQ_MAX_SIZE) ? 1 : 0 ;
+	return (pQueue->Size==PQ_MAX_SIZE) ? TRUE : FALSE ;
 }
 
 

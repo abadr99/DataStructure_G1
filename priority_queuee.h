@@ -126,7 +126,7 @@ uint8_t  PriorityQueue_IsFull     (PriorityQueue_t *pQueue);
 
 
 
-/* @brief: This function is used to check whether the queue is full or not
+/* @brief: returns top of the queue
  * @para : pQueue ::
  * 					pointer to the queue
  * @ret  : QueueEntry , returns top of the queue
