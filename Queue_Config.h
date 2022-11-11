@@ -7,6 +7,9 @@
 //if you want queue array ,replace -QUEUE_ARRAY- by -QUEUE_LINKED-.
 #define QUEUE_TYPE     QUEUE_LINKED
 
+//if you want to change the type ,replace uint16_t with your type.
+#define ELEMENT_TYPE     uint16_t
+
 #if QUEUE_TYPE == QUEUE_ARRAY
 //if you want to change the size ,replace 100 with your size.
 #define ARRAY_SIZE    (100)
