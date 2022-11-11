@@ -72,8 +72,8 @@ TEST(LinkedStack_byLinkedList)
 }
 TEST(LinkedQueue_byLinkedList)
 {
-   START_TEST(LinkedQueue_byLinkedList)
-   {
+   START_TEST(LinkedQueue_byLinkedList);
+   
 	QueueList_t queue;
      LinkedQueue_Init(&queue);
 	 LinkedQueue_EnQueue(&queue,10);
@@ -91,7 +91,13 @@ TEST(LinkedQueue_byLinkedList)
 	 LinkedQueue_DeQueue(&queue);
 	 size=LinkedQueue_GetSize(&queue);
 	 EXPECT_EQ(4,size);
-   }
+     LinkedQueue_ClearQueue(&queue);
+	 uint8_t Is_Empty = LinkedQueue_IsEmpty(&queue);
+	 EXPECT_TRUE(Is_Empty);
+	 LinkedQueue_EnQueue(&queue,1);
+	 LinkedQueue_EnQueue(&queue,2);
+	 uint8_t Is_Full=LinkedQueue_IsFull(&queue);
+	 EXPECT_FALSE(Is_Full);
 }
 TEST(priority_queuee)
 {
