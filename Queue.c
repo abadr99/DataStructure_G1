@@ -74,9 +74,9 @@ ELEMENT_TYPE Queue_GetFront(Queue_t *q)
 
 typedef struct queuearray
 {
-uint16_t size;
-ELEMENT_TYPE arr[ARRAY_SIZE];
-uint16_t front_index;
+    uint16_t size;
+    ELEMENT_TYPE arr[ARRAY_SIZE];
+    uint16_t front_index;
 }Queue_t;
 
 void Queue_Initialize(Queue_t*q)
@@ -98,13 +98,12 @@ uint16_t Queue_IsEmpty(Queue_t*q)
     return q->size == 0 ? TRUE : FALSE;
 }
 uint16_t Queue_IsFull(Queue_t*q)
-{   uint16_t val;
-    if(q->size==arraysize){val=1;}
-    return val;
+{   
+    return q->size == ARRAY_SIZE ? FALSE : TRUE;
 }
 ELEMENT_TYPE Queue_GetFront(Queue_t *q)
 {
-    return q->arr[q->i];
+    return q->arr[q->front_index];
 }
 
 uint16_t Queue_GetSize(Queue_t*q)
