@@ -5,23 +5,23 @@
 #include <assert.h>
 #if QUEUE_TYPE ==QUEUE_LINKED
 typedef struct node {
-    uint16_t key;
+    ELEMENT_TYPE key;
     struct node* next;
 }node;
 
 typedef struct queue {
     uint16_t size;
     struct node *front, *rear;
-}queue_t;
+}Queue_t;
 
 
-void Queue_Initialize(queue_t*q)
+void Queue_Initialize(Queue_t*q)
 {
     q->front = q->rear = 0;
     q-> size=0;
 }
 
-void Queue_Enqueue(queue_t* q, uint16_t val)
+void Queue_Enqueue(Queue_t* q, ELEMENT_TYPE val)
 {
     (q->size)++;
     node* newnode= (node*)malloc(sizeof(node));
@@ -34,9 +34,9 @@ void Queue_Enqueue(queue_t* q, uint16_t val)
     q->rear->next = newnode;
     q->rear = newnode;
 }
-uint16_t Queue_Dequeue(queue_t* q)
+ELEMENT_TYPE Queue_Dequeue(Queue_t* q)
 {
-     uint16_t val;
+     ELEMENT_TYPE val;
     (q->size)--;
     assert( (!(q->front == 0))  && "the queue is arleady empty! ");
     node* temp = q->front;
@@ -49,21 +49,21 @@ uint16_t Queue_Dequeue(queue_t* q)
     free(temp);
     return val;}
 
-uint16_t Queue_GetSize(queue_t* q)
+uint16_t Queue_GetSize(Queue_t* q)
 {
     return q->size;
 }
-uint16_t Queue_IsEmpty(queue_t*q)
+uint16_t Queue_IsEmpty(Queue_t*q)
 {   uint16_t val;
     if(q->size==0){val=1;}
     return val;
 }
-uint16_t Queue_IsFull(queue_t*q)
+uint16_t Queue_IsFull(Queue_t*q)
 {   
     return 0;
 }
-uint16_t Queue_GetFront(queue_t *q)
-{   int val;
+ELEMENT_TYPE Queue_GetFront(Queue_t *q)
+{   ELEMENT_TYPE val;
     assert( (!(q->front == 0))  && "the queue is arleady empty! ");
     node* temp = q->front;
     val=q->front->key;
@@ -75,40 +75,40 @@ uint16_t Queue_GetFront(queue_t *q)
 typedef struct queuearray
 {
 uint16_t size;
-uint16_t arr[arraysize];
-uint16_t i;
-}queue_t;
+ELEMENT_TYPE arr[ARRAY_SIZE];
+uint16_t front_index;
+}Queue_t;
 
-void Queue_Initialize(queue_t*q)
+void Queue_Initialize(Queue_t*q)
 {   q->i=0;
     q->size=0;
 }
-void Queue_Enqueue( queue_t*q,uint16_t val)
+void Queue_Enqueue( Queue_t*q,ELEMENT_TYPE val)
 {
     q->arr[q->size]=val;
     (q->size)++;
 }
-uint16_t Queue_Dequeue (queue_t*q)
-{   q->i++;
+ELEMENT_TYPE Queue_Dequeue (Queue_t*q)
+{   q->front_index++;
     q->size--;
-    return q->arr[(q->i)-1];
+    return q->arr[(q->front_index)-1];
 }
-uint16_t Queue_IsEmpty(queue_t*q)
+uint16_t Queue_IsEmpty(Queue_t*q)
 {   uint16_t val;
     if(q->size==0){val=1;}
     return val;
 }
-uint16_t Queue_IsFull(queue_t*q)
+uint16_t Queue_IsFull(Queue_t*q)
 {   uint16_t val;
     if(q->size==arraysize){val=1;}
     return val;
 }
-uint16_t Queue_GetFront(queue_t *q)
+ELEMENT_TYPE Queue_GetFront(Queue_t *q)
 {
     return q->arr[q->i];
 }
 
-uint16_t Queue_GetSize(queue_t*q)
+uint16_t Queue_GetSize(Queue_t*q)
 {
     return q->size;
 }
