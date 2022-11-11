@@ -6,6 +6,8 @@
 #include "DoublyLinkedList.h"
 #include "LinkedStack_byLinkedList.h"
 #include "LinkedQueue_byLinkedList.h"
+#include "priority_queuee.h"
+
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -90,4 +92,36 @@ TEST(LinkedQueue_byLinkedList)
 	 size=LinkedQueue_GetSize(&queue);
 	 EXPECT_EQ(4,size);
    }
+}
+TEST(priority_queuee)
+{
+    START_TEST(priority_queuee)
+    {
+        PriorityQueue_t q;
+        PriorityQueue_CreateQueue(&q);
+        PriorityQueue_EnQueue(&q,3);
+        PriorityQueue_EnQueue(&q,5);
+        PriorityQueue_EnQueue(&q,4);
+        PriorityQueue_EnQueue(&q,2);
+        PriorityQueue_EnQueue(&q,9);
+        uint8_t Is_Empty =  PriorityQueue_IsEmpty (&q);
+       
+
+        EXPECT_FALSE(Is_Empty);
+        uint16_t size=PriorityQueue_GetQueueSize(&q);
+        EXPECT_EQ(5,size);
+        QueueEntry element=PriorityQueue_DeQueue(&q);
+        EXPECT_EQ(9,element);
+        QueueEntry top=PriorityQueue_GetTop(&q);
+        EXPECT_EQ(2,top);
+        PriorityQueue_ClearQueue (&q);
+        size=PriorityQueue_GetQueueSize(&q);
+        EXPECT_EQ(0,size);
+        Is_Empty =  PriorityQueue_IsEmpty (&q);
+        EXPECT_TRUE(Is_Empty);
+        uint8_t Is_Full =  PriorityQueue_IsFull (&q);
+        EXPECT_FALSE(Is_Full);
+
+    }
+
 }
