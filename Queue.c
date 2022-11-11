@@ -94,9 +94,8 @@ ELEMENT_TYPE Queue_Dequeue (Queue_t*q)
     return q->arr[(q->front_index)-1];
 }
 uint16_t Queue_IsEmpty(Queue_t*q)
-{   uint16_t val;
-    if(q->size==0){val=1;}
-    return val;
+{   
+    return q->size == 0 ? TRUE : FALSE;
 }
 uint16_t Queue_IsFull(Queue_t*q)
 {   uint16_t val;
