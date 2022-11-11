@@ -80,7 +80,7 @@ uint16_t front_index;
 }Queue_t;
 
 void Queue_Initialize(Queue_t*q)
-{   q->i=0;
+{   q->front_index=0;
     q->size=0;
 }
 void Queue_Enqueue( Queue_t*q,ELEMENT_TYPE val)
