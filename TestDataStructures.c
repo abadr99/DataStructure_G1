@@ -44,7 +44,7 @@ TEST(DoublyLinkedList)
 	DoublyLinkedList_DeleteNode(&L1, 0);
 	// DoublyLinkedList_DeleteNode(&L1, 3);
 	x = DoublyLinkedList_GetSize(&L1);
-	EXPECT_EQ(2,x);
+	EXPECT_EQ(3,x);
 }
 TEST(LinkedStack_byLinkedList)
 {
