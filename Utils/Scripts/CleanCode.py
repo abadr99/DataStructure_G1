@@ -67,15 +67,18 @@ def list_paths(rootdir):
     return listOfPaths
 
 def main():
-    actual_path = workspace_path.replace('Utils\Scripts', '')
+    actual_path = "./src"
     paths = list_paths(actual_path)
-
     for path in paths:
         CheckFilesName(path)
+
+    actual_path = "./inc"
+    paths = list_paths(actual_path)
+    for path in paths:
+        CheckFilesName(path)    
         # TODO: Solving bug at CheckGuardMacros(path)
         # CheckGuardMacros(path)
         
-
 
 if __name__ == "__main__":
     main()
