@@ -54,6 +54,7 @@ void Clear_Stack(Stack_t* stack)
 void Stack_Init(Stack_t *stack)
 {
 	stack->pTop=NULL;
+	stack->size=0;
 }
 void Stack_Push(Stack_t *stack,STACK_DATA_TYPE Data)
 {
@@ -61,6 +62,7 @@ void Stack_Push(Stack_t *stack,STACK_DATA_TYPE Data)
 	p->Value=Data;
 	p->pPrevNode=stack->pTop;
 	stack->pTop=p;
+	(stack->size)++;
 }
 void Stack_Top(Stack_t *stack , STACK_DATA_TYPE *TopVal)
 {
@@ -71,6 +73,7 @@ void Stack_Pop(Stack_t *stack)
 	Node_t*p=stack->pTop;
 	stack->pTop=stack->pTop->pPrevNode;
 	free(p);
+	(stack->size)--;
 }
 STACK_DATA_TYPE Is_Full(Stack_t *stack)
 {
@@ -91,14 +94,7 @@ void Stack_Traverse(Stack_t *stack,void (*ptr_func)(STACK_DATA_TYPE* x))
 }
 void Stack_GetSize(Stack_t *stack , STACK_DATA_TYPE *size)
 {
-	STACK_DATA_TYPE i=0;
-    Node_t*p=stack->pTop;
-    while(p)
-    {
-    	i++;
-    	p=p->pPrevNode;
-    }
-    *size=i;
+	*size = stack->size;
 }
 void Clear_Stack(Stack_t* stack)
 {
