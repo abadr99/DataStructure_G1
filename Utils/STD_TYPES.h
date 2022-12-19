@@ -17,4 +17,6 @@ typedef long     double     f80_t;
 #define NULL_ptr ((void*)0)
 #define TRUE  1
 #define FALSE 0
+#define NOT_FOUND -1
+
 #endif /*STDT_TYPES_H*/
