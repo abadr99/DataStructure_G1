@@ -7,7 +7,7 @@
 #include "LinkedStack_byLinkedList.h"
 #include "LinkedQueue_byLinkedList.h"
 #include "priority_queuee.h"
-
+#include "SearchingAlgrothims.h"
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -130,4 +130,33 @@ TEST(priority_queuee)
 
     }
 
+}
+TEST(SearchingAlogrithm)
+{
+	START_TEST(SearchingAlogrithm_BinaryIterative)
+	{
+		sint32_t Array[]={1,2,3,4,5,6,7};
+		sint32_t Loc_Test;
+		Loc_Test=SearchingAlgorithm_BinaryIterative(Array,7,1);
+		EXPECT_EQ(0,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryIterative(Array,7,7);
+		EXPECT_EQ(6,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryIterative(Array,7,7);
+		EXPECT_EQ(6,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryIterative(Array,7,8);
+		EXPECT_EQ(-1,Loc_Test);
+	}
+	START_TEST(SearchingAlogrithm_BinaryRecursive)
+	{
+		sint32_t Array[]={1,2,3,4,5,6,7};
+		sint32_t Loc_Test;
+		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,1);
+		EXPECT_EQ(0,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,7);
+		EXPECT_EQ(6,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,7);
+		EXPECT_EQ(6,Loc_Test);
+		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,8);
+		EXPECT_EQ(-1,Loc_Test);
+	}
 }
