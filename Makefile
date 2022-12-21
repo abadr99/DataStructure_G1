@@ -37,23 +37,41 @@ PRE_SCRIPT := $(wildcard $(SCRIPT_PATH)/*.py)
 CC_PRE_SCRIPT := python
 # -----------------------------------------------
 
+ifeq (1,$(linux))
+all: #clean-code
+	@echo "[LINUX] : Bulding for and Running ......"
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INCLUDES) -o main.exe
+	@./main.exe
 
+build:
+	@echo "[LINUX] : Bulding ................................"
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INC_PATH) -o main.exe
+
+clean-code:
+	@echo "[LINUX] : Checking for WTFs ......"
+	@python $(CLEAN_CODE_PATH)
+
+clean:
+	@echo "[LINUX] : Cleaning ......"
+	@rm -rf $(wildcard *.o)
+	@rm -rf $(wildcard *.exe)
+else
 all: clean-code
-	@echo "Bulding and Running ......"
+	@echo "[WIN] : Bulding and Running ......"
 	@$(CC) $(CCFLAGS) $(SOURCES) $(INCLUDES) -o main.exe
 	@main.exe
 
 build:
-	@echo Bulding ........................................
+	@echo "[WIN] : Bulding ............................."
 	@$(CC) $(CCFLAGS) $(SOURCES) $(INC_PATH) -o main.exe
 
 clean-code:
-	@echo "Checking for WTFs ......"
+	@echo "[WIN] : Checking for WTFs ......"
 	@python $(CLEAN_CODE_PATH)
 
 clean:
-	@echo "Cleaning ......"
+	@echo "[WIN] : Cleaning ......"
 	@del -rf $(wildcard *.o)
 	@del -rf $(wildcard *.exe)
-
+endif
  
