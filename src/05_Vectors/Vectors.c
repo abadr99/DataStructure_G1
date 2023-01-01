@@ -46,4 +46,3 @@ void popBack(vector_t *V)
 	}
 	(V->CurrSize)--;
 }
-
