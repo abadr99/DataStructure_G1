@@ -1,7 +1,6 @@
 #ifndef VECTORS_H_
 #define VECTORS_H_
 #include "STD_TYPES.h"
-
 typedef uint32_t VectorType;
 typedef struct
 {
