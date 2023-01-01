@@ -1,5 +1,6 @@
 #include "Vectors.h"
-#include <stdlib.h>
+
+
 void Create(vector_t *V)
 {
 	V->CurrSize=0;
