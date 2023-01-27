@@ -14,6 +14,7 @@ void Vector_Init(Vector_t *pVector )
 	pVector->LastIndex=0;
 	pVector->pArray = (VECTORTYPE *)malloc(sizeof(VECTORTYPE));
 }
+
 void Vector_PushBack(Vector_t *pVector ,VECTORTYPE Entry)
 {
 	if(pVector->Size == 0 )
