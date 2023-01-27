@@ -10,7 +10,7 @@ void pushBack(vector_t *V,VectorType e)
  if((V->CurrSize==0)&&(V->MaxSize==0))
  {
 	 V->MaxSize=1;
-	 V->ptr=(VectorType*)calloc(2*(V->MaxSize),sizeof(VectorType));
+	 V->ptr=(VectorType*)calloc(1,sizeof(VectorType));
 	 V->ptr[V->CurrSize]=e;
  }
  else if((V->CurrSize)==(V->MaxSize))
