@@ -8,6 +8,7 @@
 #include "LinkedQueue_byLinkedList.h"
 #include "priority_queuee.h"
 #include "SearchingAlgrothims.h"
+#include"Vector.h"
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -158,5 +159,53 @@ TEST(SearchingAlogrithm)
 		EXPECT_EQ(6,Loc_Test);
 		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,8);
 		EXPECT_EQ(-1,Loc_Test);
+	}
+}
+TEST(Vector)
+{
+	START_TEST(Vector)
+	{
+		Vector_t vector_1 ;
+		uint32_t Loc_Test1;
+		uint32_t Loc_Test2;
+		Vector_Init(&vector_1);
+
+		Vector_PushBack(&vector_1, 1);
+		Vector_PushBack(&vector_1, 2);
+		Vector_PushBack(&vector_1, 3);
+		Vector_PushBack(&vector_1, 4);
+
+		Loc_Test1 = vector_1.Size;
+		EXPECT_EQ(4,Loc_Test1);
+		Vector_PushBack(&vector_1, 5);
+		Loc_Test1 = vector_1.Size;
+		Loc_Test2 = Vector_GetSize(&vector_1);
+		EXPECT_EQ(8,Loc_Test1);
+		EXPECT_EQ(5,Loc_Test2);
+
+		Loc_Test1 = Vector_PopBack(&vector_1);
+		Loc_Test2 = vector_1.Size;
+		EXPECT_EQ(5,Loc_Test1);
+		EXPECT_EQ(4,Loc_Test2);
+
+		Vector_PopBack(&vector_1);
+		Loc_Test1 = Vector_PopBack(&vector_1);
+		Loc_Test2 = vector_1.Size;
+		EXPECT_EQ(3,Loc_Test1);
+		EXPECT_EQ(2,Loc_Test2);
+		Loc_Test1 = Vector_GetTop(&vector_1);
+		EXPECT_EQ(2,Loc_Test1);
+
+		Vector_PopBack(&vector_1);
+		Loc_Test1 = vector_1.Size;
+		Loc_Test2 = Vector_GetSize(&vector_1);
+		EXPECT_EQ(1,Loc_Test1);
+		EXPECT_EQ(1,Loc_Test2);
+
+		Vector_PopBack(&vector_1);
+		Loc_Test1 = vector_1.Size;
+		Loc_Test2 = Vector_GetSize(&vector_1);
+		EXPECT_EQ(0,Loc_Test1);
+		EXPECT_EQ(0,Loc_Test2);
 	}
 }

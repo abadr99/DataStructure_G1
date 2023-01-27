@@ -1,4 +1,3 @@
-
 #ifndef LINKEDSTACK_BYLINKEDLIST_H_
 #define LINKEDSTACK_BYLINKEDLIST_H_
 #include "DoublyLinkedList.h"

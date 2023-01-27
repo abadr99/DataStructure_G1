@@ -6,5 +6,7 @@ TEST(LinkedStack_byLinkedList);
 TEST(LinkedQueue_byLinkedList);
 
 TEST(priority_queuee);
+TEST(SearchingAlogrithm);
+TEST(Vector);
 
 #endif
