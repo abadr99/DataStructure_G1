@@ -13,5 +13,6 @@ typedef struct
 void Create(vector_t *V);
 void pushBack(vector_t *V,VectorType e);
 void popBack(vector_t *V);
-
+void Destroy(vector_t *V);
+VectorType getSize(vector_t *V);
 #endif /* VECTORS_H_ */

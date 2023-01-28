@@ -37,6 +37,7 @@ void popBack(vector_t *V)
 	{
 		VectorType* temp=V->ptr;
 		(V->MaxSize) /=2;
+		V->ptr=(VectorType*)calloc((V->MaxSize),sizeof(VectorType));
 		for(VectorType i=0;i<V->MaxSize;i++)
 		{
 			V->ptr[i]=temp[i];
@@ -45,4 +46,13 @@ void popBack(vector_t *V)
 	}
 	(V->CurrSize)--;
 }
-
+VectorType getSize(vector_t *V)
+{
+	return (V->CurrSize);
+}
+void Destroy(vector_t *V)
+{
+	V->CurrSize=0;
+	V->MaxSize=0;
+	free(V->ptr);
+}

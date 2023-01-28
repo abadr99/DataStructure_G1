@@ -7,7 +7,7 @@
 #include "LinkedStack_byLinkedList.h"
 #include "LinkedQueue_byLinkedList.h"
 #include "priority_queuee.h"
-
+#include "Vectors.h"
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -130,4 +130,38 @@ TEST(priority_queuee)
 
     }
 
+}
+TEST(Vectors)
+{
+	START_TEST(Vectors);
+	vector_t vector_1;
+	uint32_t Loc1;
+	uint32_t Loc2;
+	Create(&vector_1);
+	pushBack(&vector_1,1);
+	pushBack(&vector_1,2);
+	pushBack(&vector_1,3);
+	pushBack(&vector_1,4);
+	Loc1=vector_1.MaxSize;
+	EXPECT_EQ(4,Loc1);
+	pushBack(&vector_1,5);
+	Loc1=vector_1.MaxSize;
+	Loc2=getSize(&vector_1);
+	EXPECT_EQ(8,Loc1);
+	EXPECT_EQ(5,Loc2);
+	popBack(&vector_1);
+	Loc1=vector_1.MaxSize;
+	Loc2=getSize(&vector_1);
+	EXPECT_EQ(4,Loc1);
+	EXPECT_EQ(4,Loc2);
+	popBack(&vector_1);
+	Loc1=vector_1.MaxSize;
+	Loc2=getSize(&vector_1);
+	EXPECT_EQ(4,Loc1);
+	EXPECT_EQ(3,Loc2);
+	popBack(&vector_1);
+	Loc1=vector_1.MaxSize;
+	Loc2=getSize(&vector_1);
+	EXPECT_EQ(2,Loc1);
+	EXPECT_EQ(2,Loc2);
 }
