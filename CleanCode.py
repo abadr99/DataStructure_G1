@@ -34,7 +34,7 @@ def PRINT_MSG(msg_id , file):
 
 
 def CheckGuardMacros(PATH):
-    for file in os.listdir(dir_path):
+    for file in os.listdir(PATH):
         if file.endswith('.h'):
             f = open(file,'r') 
             line1 = f.readline()

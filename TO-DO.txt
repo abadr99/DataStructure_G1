@@ -13,5 +13,6 @@ TODO :
       - Check if the functions name has the same naming rule
       - check if #include "STD_TYPES.h" exsist
       - [DONE] : Check if the guard macros exsist
-3) [TO-DO] : check for comments and remove it {adding options if the comment is very necessary we have to add # before it e.g. // #Comment}
-5) MakeFile
+5) [TO-DO] : check for comments and remove it {adding options if the comment is very necessary we have to add # before it e.g. // #Comment}
+6) MakeFile
+7)fix CleanCode error in linux
