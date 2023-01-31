@@ -14,9 +14,9 @@ void Stack_Pop(Stack_t *stack)
 {
   stack->LastIndex--;
 }
-void Stack_Top(Stack_t *stack , STACK_DATA_TYPE *Data)
+uint16_t Stack_Top(Stack_t *stack )
 {
-  *Data= stack->StackArr[(stack->LastIndex)-1];
+  return stack->StackArr[(stack->LastIndex)-1];
 }
 void Stack_GetSize(Stack_t *stack , STACK_DATA_TYPE *size)
 {
@@ -48,6 +48,21 @@ void Clear_Stack(Stack_t* stack)
 {
 	stack->LastIndex=0;
 }
+void Stack_graph(Stack_t* stack)
+{
+	FILE *pfile;
+	char cmd[30]="dot -Tpng -O Stack.dot";
+	pfile=fopen("Stack.dot","w");
+	fprintf(pfile,"graph stack { \n node [shape = rect] \nlabel=\"Stack\"\n");
+	STACK_DATA_TYPE i=0;
+  		for(i=0;i<(stack->LastIndex)-1;i++)
+  		{
+  		  fprintf(pfile,"%d -- %d\n",stack->StackArr[i+1],stack->StackArr[i]);
+    	}
+    fprintf(pfile,"}");
+    fclose(pfile);
+	system(cmd);
+}
 //*******************************************
 //.c related stack linked
 #elif STACK_TYPE == LINKED_STACK
@@ -58,19 +73,19 @@ void Stack_Init(Stack_t *stack)
 }
 void Stack_Push(Stack_t *stack,STACK_DATA_TYPE Data)
 {
-	Node_t*p =(Node_t*)malloc(sizeof(Node_t));
+	SNode_t*p =(SNode_t*)malloc(sizeof(SNode_t));
 	p->Value=Data;
 	p->pPrevNode=stack->pTop;
 	stack->pTop=p;
 	(stack->size)++;
 }
-void Stack_Top(Stack_t *stack , STACK_DATA_TYPE *TopVal)
+uint16_t Stack_Top(Stack_t *stack )
 {
-	*TopVal=stack->pTop->Value;
+	return stack->pTop->Value;
 }
 void Stack_Pop(Stack_t *stack)
 {
-	Node_t*p=stack->pTop;
+	SNode_t*p=stack->pTop;
 	stack->pTop=stack->pTop->pPrevNode;
 	free(p);
 	(stack->size)--;
@@ -85,7 +100,7 @@ STACK_DATA_TYPE Is_Empty(Stack_t*stack)
 }
 void Stack_Traverse(Stack_t *stack,void (*ptr_func)(STACK_DATA_TYPE* x))
 {
-	Node_t*p=stack->pTop;
+	SNode_t*p=stack->pTop;
 	while(p)
 	{
 		(*ptr_func)(&p->Value);
@@ -98,13 +113,30 @@ void Stack_GetSize(Stack_t *stack , STACK_DATA_TYPE *size)
 }
 void Clear_Stack(Stack_t* stack)
 {
-    Node_t*p=stack->pTop;
+    SNode_t*p=stack->pTop;
     while(p)
 	{
     	p=p->pPrevNode;
     	free(p);
     	stack->pTop=p;
     }
+}
+void Stack_graph (Stack_t * stack)
+{
+	FILE *pfile;
+	char cmd[30]="dot -Tpng -O Stack.dot";
+	pfile=fopen("Stack.dot","w");
+	fprintf(pfile,"graph stack { \n label=\"Stack\"\n");
+	STACK_DATA_TYPE i=0;
+	SNode_t*p=stack->pTop;
+  		for(i=0;i<(stack->size)-1;i++,p=p->pPrevNode)
+  		{
+  		  fprintf(pfile,"%d -- %d\n",p->Value,p->pPrevNode->Value);
+    	}
+    fprintf(pfile,"}");
+    fclose(pfile);
+	system(cmd);
+
 }
 #endif
 

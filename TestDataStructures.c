@@ -8,6 +8,7 @@
 #include "LinkedQueue_byLinkedList.h"
 #include "priority_queuee.h"
 #include "SearchingAlgrothims.h"
+#include "Stack.h"
 TEST(DoublyLinkedList)
 {
 	START_TEST(DoublyLinkedList);
@@ -158,5 +159,22 @@ TEST(SearchingAlogrithm)
 		EXPECT_EQ(6,Loc_Test);
 		Loc_Test=SearchingAlgorithm_BinaryRecursive(Array,7,8);
 		EXPECT_EQ(-1,Loc_Test);
+	}
+}
+TEST(Stack)
+{
+	START_TEST(Stack)
+	{
+		Stack_t st;
+		Stack_Init(&st);
+		Stack_Push(&st,10);
+		Stack_Push(&st,20);
+		Stack_Push(&st,30);
+		Stack_Push(&st,40);
+		Stack_Push(&st,50);
+		uint16_t top;
+		top=Stack_Top(&st);
+		EXPECT_EQ(50,top);
+		Stack_graph(&st);
 	}
 }

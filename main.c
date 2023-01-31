@@ -8,7 +8,7 @@ int main()
     RUN_TEST(LinkedStack_byLinkedList);
     RUN_TEST(LinkedQueue_byLinkedList);
     RUN_TEST(SearchingAlogrithm);
-
+    RUN_TEST(Stack);
     return 0;
 }
 
