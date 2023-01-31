@@ -1,8 +1,8 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include "STD_TYPES.h"
 #ifndef STACK_CONFIG_H_
 #define STACK_CONFIG_H_
-#include <stdlib.h>
-#include <stdint.h>
 #define STACK_ARRAY    3
 #define LINKED_STACK   6
 //Data Type

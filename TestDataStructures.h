@@ -4,7 +4,7 @@
 TEST(DoublyLinkedList);
 TEST(LinkedStack_byLinkedList);
 TEST(LinkedQueue_byLinkedList);
-
+TEST(SearchingAlogrithm);
 TEST(priority_queuee);
-
+TEST(Stack);
 #endif
