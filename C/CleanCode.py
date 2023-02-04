@@ -18,7 +18,6 @@ DEFAULT = '\033[0m'
 
 # structure path
 dir_path = os.getcwd()
-
 def PRINT_MSG(msg_id , file):
     if msg_id == "header guard macros not found":
          print(BOLD + CLEAN_CODE_COLOR + "[CLEAN_CODE]: " + DEFAULT +"No header guard macros found or in wrong postion (make sure it's at first line) in " + FILE_NAME_COLOR + file + DEFAULT)
@@ -34,23 +33,34 @@ def PRINT_MSG(msg_id , file):
 
 
 def CheckGuardMacros(PATH):
-    for file in os.listdir(PATH):
-        if file.endswith('.h'):
-            f = open(file,'r') 
+    for PATH, dirs, files in os.walk("."): 
+     for filename in files:
+      fname = os.path.join(PATH,filename)
+      if fname.endswith('.h'):
+    
+            
+            f = open(fname,'r') 
             line1 = f.readline()
             line2 = f.readline()
+           
             if(line1[0:6] != "#ifndef" and line2[0:7] != "#define"):
-                PRINT_MSG("header guard macros not found" , file)
+                PRINT_MSG("header guard macros not found" , filename)
+            
+            
+
 
 def CheckFilesName(PATH):
-    for file in os.listdir(PATH):
-        if (file.endswith(".c") or file.endswith(".h")) and (file != "main.c"):
-            if(file[0].islower()):
-                PRINT_MSG("First letter is not uppercase" , file)
-        index =  file.find('_')
-        if(index > -1 and file!="STD_TYPES.h"):
-            if(file[index+1:] != "Config.h"):
-                PRINT_MSG("not a Config file", file)
+        for PATH, dirs, files in os.walk("."): 
+         for filename in files:
+          
+          if (filename.endswith(".c") or filename.endswith(".h")) and(filename!="main.c"):
+            if(filename[0].islower()):
+                PRINT_MSG("First letter is not uppercase" , filename)
+            index =  filename.find('_')
+            if(index > -1 and filename!="STD_TYPES.h"):
+             #if(filename[index+1:] != "Config.h"):
+              if(not filename.endswith("Config.h",index+1) and not filename.endswith("config.h",index+1)):
+                PRINT_MSG("not a Config file", filename)
 
 
 
