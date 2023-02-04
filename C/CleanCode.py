@@ -58,7 +58,7 @@ def CheckFilesName(PATH):
                 PRINT_MSG("First letter is not uppercase" , filename)
             index =  filename.find('_')
             if(index > -1 and filename!="STD_TYPES.h"):
-             #if(filename[index+1:] != "Config.h"):
+             
               if(not filename.endswith("Config.h",index+1) and not filename.endswith("config.h",index+1)):
                 PRINT_MSG("not a Config file", filename)
 
