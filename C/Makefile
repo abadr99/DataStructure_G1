@@ -38,8 +38,8 @@ CC_PRE_SCRIPT := python
 # -----------------------------------------------
 
 # ------------------ BUILD FOR LINUX --------------------
-ifeq (1,$(linux))
-all: #clean-code
+ifeq ($(shell uname), Linux)
+all: clean-code
 	@echo "[LINUX] : Bulding for and Running ......"
 	@$(CC) $(CCFLAGS) $(SOURCES) $(INCLUDES) -o main.exe
 	@./main.exe
@@ -50,7 +50,7 @@ build:
 
 clean-code:
 	@echo "[LINUX] : Checking for WTFs ......"
-	@python $(CLEAN_CODE_PATH)
+	@python3 $(CLEAN_CODE_PATH)
 
 clean:
 	@echo "[LINUX] : Cleaning ......"
