@@ -29,17 +29,17 @@ void PriorityQueue::Push(int element)
     Sort();
 }
 
-PriorityQueue::GetTop()
+int PriorityQueue::GetTop()
 {
     return _PqueueArr[0];
 }
-PriorityQueue::Pop()
+int PriorityQueue::Pop()
 {
     assert(_size != 0 && "PRIORITY QUEUE IS EMPTY");
     _size --;
     return _PqueueArr[_size];
 }
-PriorityQueue::GetSize()
+int PriorityQueue::GetSize()
 {
     return _size;
 }
