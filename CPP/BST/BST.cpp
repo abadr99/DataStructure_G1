@@ -19,7 +19,7 @@ void BST<T>::Insert_recur(TreeNode_t<T>& pSubTree, Node<T>*& pNode) {
     if (pSubTree->Data < pNode->Data) {
         Insert_recur(pSubTree->RightNode,  pNode);
     } else {
-        Insert_recur(pNopSubTreede->LeftNode,  pNode);
+        Insert_recur(pSubTree->LeftNode,  pNode);
     }
  }
 template<typename T>
