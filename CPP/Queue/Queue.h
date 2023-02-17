@@ -1,5 +1,5 @@
-#ifndef QUEUE_H_
-#define QUEUE_H_
+#ifndef _QUEUE_H_
+#define _QUEUE_H_
 
 #define QUEUE_MAX_SIZE (5)
 namespace DSA { namespace DS { namespace Queue { namespace ARRAY {
