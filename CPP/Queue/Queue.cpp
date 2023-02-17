@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cassert>  
+#include <cassert>
 #include "../Utils/utils.h"
 #include "Queue.h"
 
@@ -19,37 +19,40 @@ void QueueArr::Queue<T>::EnQueue(T element)
 {
     assert(_size < QUEUE_MAX_SIZE && "YOU HAVE EXCEED THE EXPECTED QUEUE SIZE IFYOU WANT MORE SIZE RE-DEFINE QUEUE_MAX_SIZE @Queue.h");
     _QueueArr[_rear]=element;
-    (_rear==QUEUE_MAX_SIZE-1)?(_rear=0):(_rear++);
-    _size++;
+    (_rear==QUEUE_MAX_SIZE-1)?(_rear=0):(_rear+=1);
+    _size+=1;
 }
 template <typename T>
 T QueueArr::Queue<T>::DeQueue()
 {
+	T result =_QueueArr[_front];
     assert((!_size==0) && "THERE IS NO _Data IN THE QUEUE TO DEQUEUE IT ");
-    return (QueueArr[_front]);
-    (_front==QUEUE_MAX_SIZE-1)?(_front=0):(_front++);
-    _size--;
+    (_size)-=1;
+    (_front==QUEUE_MAX_SIZE-1)?(_front=0):(_front+=1);
+    return (result);
+
+
 }
 template <typename T>
 uint32_t QueueArr::Queue<T>::GetTop()
 {
-    return(_QueueArr[_rear--]);
+    return(_QueueArr[_rear-=1]);
 }
 template <typename T>
-uint8_t QueueArr::Queue<T>::GetSize()
+uint32_t QueueArr::Queue<T>::GetSize()
 {
     return(_size);
 }
 template <typename T>
-uint8_t QueueArr::Queue<T>::IsFull()
+uint32_t QueueArr::Queue<T>::IsFull()
 {
     assert(_size < QUEUE_MAX_SIZE && "YOU HAVE EXCEED THE EXPECTED QUEUE SIZE IFYOU WANT MORE SIZE RE-DEFINE QUEUE_MAX_SIZE @Queue.h");
     return(_size==QUEUE_MAX_SIZE);
 }
 template <typename T>
-uint8_t QueueArr::Queue<T>::IsEmpty()
+uint32_t QueueArr::Queue<T>::IsEmpty()
 {
-    return(!_size)
+    return(_size!=QUEUE_MAX_SIZE);
 }
 template <typename T>
 void QueueArr::Queue<T>::Traverse(void (*pfun)(T data))
@@ -59,7 +62,7 @@ void QueueArr::Queue<T>::Traverse(void (*pfun)(T data))
     for(pos=_front,cont=0;cont<_size;cont++)
     {
         (*pfun)(_QueueArr[pos]);
-        (pos=QUEUE_MAX_SIZE-1)?(pos=0):(pos++);
+        (pos==QUEUE_MAX_SIZE-1)?(pos=0):(pos++);
     }
 }
 template <typename T>
@@ -69,3 +72,9 @@ void QueueArr::Queue<T>::Destroy()
     _rear=0;
     _size=0;
 }
+INSTANTIATE_CLASS_TEMPLATES(QueueArr::Queue);
+
+
+
+
+
