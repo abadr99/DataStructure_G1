@@ -5,12 +5,12 @@
 using namespace DSA::DS::BINARY_TREE;
 
 template<typename T>
-BinaryTree<T>::BinaryTree() : pNode(nullptr), _Size(0), _Height(0)
+BinaryTree<T>::BinaryTree() : pRoot(nullptr), _Size(0), _Height(0)
 {}
 
 template<typename T>
 void BinaryTree<T>::InOrder(void (*pFun)(T& x)) {
-    recur_InOrder(pNode, pFun);
+    recur_InOrder(pRoot, pFun);
 }
 // TODO @Noran
 template<typename T>
@@ -25,7 +25,8 @@ void BinaryTree<T>::PostOrder(void (*pFun)(T& x)) {
 // TODO @Noura
 template<typename T>
 bool BinaryTree<T>::IsEmpty() const {
-
+    if (this->_Size) return false;
+    else             return true;
 }
 
 // TODO @Noura

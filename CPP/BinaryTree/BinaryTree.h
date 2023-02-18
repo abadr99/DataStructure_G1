@@ -27,7 +27,7 @@ class BinaryTree {
         uint32_t GetSize() const;
         uint32_t GetHeight() const;
     protected:
-        TreeNode_t pNode;
+        TreeNode_t<T> pRoot;
         uint32_t _Size;
         uint32_t _Height;
         void recur_InOrder(TreeNode_t<T> P, void (*pFun)(T& x));

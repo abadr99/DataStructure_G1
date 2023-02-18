@@ -14,7 +14,7 @@ class BST : public BinaryTree<T> {
         void Search(T Data);
         void Destroy();
     private:
-        void Insert_recur(TreeNode_t<T>& pSubTree, Node<T>*& pNode);
+        void Helper_Insert(TreeNode_t<T>& pSubTree, T Val) ;
 };
 
 }}}} // DSA::DS::BINART_TREE::BST
