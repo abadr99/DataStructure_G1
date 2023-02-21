@@ -35,7 +35,7 @@ test_ip_file.close()
 test_op_file.close()
 
 test_number = 0
-print(bcolorsinput_lines_count , "TESTS LOADED ...... " + bcolors.ENDC)
+print(input_lines_count , "TESTS LOADED ...... " + bcolors.ENDC)
 print(bcolors.OKGREEN + "[===============================" ,input_lines_count,"===============================]" + bcolors.ENDC)
 for (input_line,output_line) in zip(input_lines,output_lines) :
     test_number += 1
