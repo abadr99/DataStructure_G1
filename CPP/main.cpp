@@ -18,4 +18,6 @@ int main (int argc, char **argv) {
     B.Insert(4);
     B.Insert(3);
     B.InOrder(print);
+    std::cout << std::endl << B.Search(4);
+    std::cout << std::endl << B.Search(100);
 }
