@@ -55,6 +55,25 @@ Search_State BST<T>::Search(T Data) {
 }
 
 template<typename T>
+void BST<T>::Delete(T Data) {
+    BT::TreeNode_t<T> pDeletedElement = Helper_Search(Data);
+    BT::TreeNode_t<T> pParentOfDeletedElement = Helper_GetParent(pDeletedElement);
+    // CASE-I : LEAF NODE
+    if (pDeletedElement->RighNode == nullptr && pDeletedElement->LeftNode == nullptr) {
+        if(pParentOfDeletedElement->LeftNode == pDeletedElement) {
+            pParentOfDeletedElement->LeftNode = nullptr;
+        }
+        else {
+            pParentOfDeletedElement->RighNode = nullptr;
+        }
+        delete pDeletedElement;
+    }
+    // CASE II-a: Have one right child 
+    else if (pDeletedElement->RighNode != nullptr && pDeletedElement->LeftNode == nullptr ) {
+
+    }
+}
+template<typename T>
 void BST<T>::Destroy() {
 
 }
