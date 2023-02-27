@@ -51,7 +51,7 @@ for (input_line,output_line) in zip(input_lines,output_lines) :
     output_line=output_line.strip()
     if result == output_line :
         test_number= f'{test_number:02}'
-        #test_number=test_number.rjust(2,'0')
+      
         print(bcolors.BOLD+"[",test_number,"/",input_lines_count,"] : ", bcolors.OKGREEN +"PASS" + bcolors.ENDC,sep="")
         test_number=int(test_number)
     else :
