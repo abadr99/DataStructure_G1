@@ -41,6 +41,8 @@ for (input_line,output_line) in zip(input_lines,output_lines) :
     test_number += 1
     p = Popen([program_path], stdout=PIPE, stdin=PIPE)
     input_line = bytes(input_line, 'ascii')
+  
+    
     p.stdin.write(input_line)
     p.stdin.flush()
     result = p.stdout.readline().strip()
@@ -48,9 +50,14 @@ for (input_line,output_line) in zip(input_lines,output_lines) :
     result=result.strip()
     output_line=output_line.strip()
     if result == output_line :
+        test_number= f'{test_number:02}'
+        #test_number=test_number.rjust(2,'0')
         print(bcolors.BOLD+"[",test_number,"/",input_lines_count,"] : ", bcolors.OKGREEN +"PASS" + bcolors.ENDC,sep="")
+        test_number=int(test_number)
     else :
+        test_number= f'{test_number:02}'
         print(bcolors.BOLD+"[",test_number,"/",input_lines_count,"] : ", bcolors.FAIL +"FAIL"+ bcolors.ENDC,sep="")
-        print(bcolors.OKCYAN +  "FOUND    : " + bcolors.ENDC,result)
-        print(bcolors.OKCYAN +  "EXPECTED : " + bcolors.ENDC,output_line)
+        print(bcolors.OKCYAN +  "EXPECTED :" + bcolors.ENDC,result)
+        print(bcolors.OKCYAN +  "FOUND :   " + bcolors.ENDC,output_line)
+        test_number=int(test_number)
         break
