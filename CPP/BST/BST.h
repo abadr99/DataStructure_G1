@@ -21,6 +21,9 @@ class BST : public BinaryTree<T> {
     private:
         void Helper_Insert(TreeNode_t<T>& pSubTree, T Val) ;
         TreeNode_t<T> Helper_Search(T Data);
+        void Helper_SwapNode(TreeNode_t<T>& _1stNode, TreeNode_t<T>& _2ndNode);
+        void Helper_DeleteNode(TreeNode_t<T>& pNode);
+        TreeNode_t<T> Helper_GetParent(TreeNode_t<T>& pNode);
 };
 
 }}}} // DSA::DS::BINART_TREE::BST

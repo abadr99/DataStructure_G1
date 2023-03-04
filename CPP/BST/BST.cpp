@@ -28,10 +28,6 @@ void BST<T>::Insert(T Data) {
 }
 
 template<typename T>
-void BST<T>::Delete(T Data) {
-}
-
-template<typename T>
 BT::TreeNode_t<T> BST<T>::Helper_Search(T Data) {
     BT::TreeNode_t<T> temp = this->pRoot;
     while(temp != nullptr) {
@@ -57,22 +53,71 @@ Search_State BST<T>::Search(T Data) {
 template<typename T>
 void BST<T>::Delete(T Data) {
     BT::TreeNode_t<T> pDeletedElement = Helper_Search(Data);
+    if (pDeletedElement == nullptr) return;
     BT::TreeNode_t<T> pParentOfDeletedElement = Helper_GetParent(pDeletedElement);
     // CASE-I : LEAF NODE
-    if (pDeletedElement->RighNode == nullptr && pDeletedElement->LeftNode == nullptr) {
+    if (pDeletedElement->RightNode == nullptr && pDeletedElement->LeftNode == nullptr) {
         if(pParentOfDeletedElement->LeftNode == pDeletedElement) {
             pParentOfDeletedElement->LeftNode = nullptr;
         }
         else {
-            pParentOfDeletedElement->RighNode = nullptr;
+            pParentOfDeletedElement->RightNode = nullptr;
         }
         delete pDeletedElement;
     }
     // CASE II-a: Have one right child 
-    else if (pDeletedElement->RighNode != nullptr && pDeletedElement->LeftNode == nullptr ) {
-
+    else if (pDeletedElement->RightNode != nullptr && pDeletedElement->LeftNode == nullptr ) {
+        auto pIterator = pDeletedElement;
+        while(pIterator->RightNode) {
+            Helper_SwapNode(pIterator,pIterator->RightNode);
+        }
+        auto Parent = Helper_GetParent(pIterator);
+        Parent->RightNode = nullptr;
+        Helper_DeleteNode(pIterator);
     }
+    // CASE II-b: Have one left child 
+    else if (pDeletedElement->RightNode == nullptr && pDeletedElement->LeftNode != nullptr ) {
+        auto pIterator = pDeletedElement;
+        while(pIterator->LeftNode) {
+            Helper_SwapNode(pIterator,pIterator->LeftNode);
+        }
+        auto Parent = Helper_GetParent(pIterator);
+        Parent->LeftNode = nullptr;
+        Helper_DeleteNode(pIterator);
+    }
+    // CASE III - Has two children
+
 }
+template<typename T>
+void BST<T>::Helper_SwapNode(TreeNode_t<T>& _1stNode, TreeNode_t<T>& _2ndNode) {
+    auto temp = _1stNode->Data;
+    _1stNode->Data = _2ndNode -> Data;
+    _2ndNode->Data = temp ;
+}
+
+template<typename T>
+void BST<T>::Helper_DeleteNode(TreeNode_t<T>& pNode) {
+    delete pNode;
+}
+
+template<typename T>
+BT::TreeNode_t<T> BST<T>::Helper_GetParent(TreeNode_t<T>& pNode) {
+    auto Iterator = this->pRoot;
+    while(Iterator->RightNode != pNode && Iterator->LeftNode != pNode) {
+        if(pNode->Data > Iterator->Data) {
+            Iterator = Iterator->RightNode;
+        }
+        else {
+            Iterator = Iterator->LeftNode;
+        }
+        if(Iterator == nullptr) {
+            break;
+        }
+    }
+    return Iterator;
+}
+
+
 template<typename T>
 void BST<T>::Destroy() {
 
