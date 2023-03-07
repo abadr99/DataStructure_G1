@@ -17,12 +17,7 @@ UNDERLINE = '\033[4m'
 DEFAULT = '\033[0m'
 
 # structure path
-workspace_path = os.getcwd() 
-
-# def Get_actual_path(PATH):
-#     PATH.replace("Utils\Sctipts\..\..", '')
-#     return PATH
-
+dir_path = os.getcwd()
 def PRINT_MSG(msg_id , file):
     if msg_id == "header guard macros not found":
          print(BOLD + CLEAN_CODE_COLOR + "[CLEAN_CODE]: " + DEFAULT +"No header guard macros found or in wrong postion (make sure it's at first line) in " + FILE_NAME_COLOR + file + DEFAULT)
@@ -38,47 +33,42 @@ def PRINT_MSG(msg_id , file):
 
 
 def CheckGuardMacros(PATH):
-    for file in os.listdir(PATH):
-        if file.endswith('.h'):
-            f = open(file,'r') 
+    for PATH, dirs, files in os.walk("."): 
+     for filename in files:
+      fname = os.path.join(PATH,filename)
+      if fname.endswith('.h'):
+    
+            
+            f = open(fname,'r') 
             line1 = f.readline()
             line2 = f.readline()
+           
             if(line1[0:6] != "#ifndef" and line2[0:7] != "#define"):
-                PRINT_MSG("header guard macros not found" , file)
+                PRINT_MSG("header guard macros not found" , filename)
+            
+            
+
 
 def CheckFilesName(PATH):
-    for file in os.listdir(PATH):
-        if (file.endswith(".c") or file.endswith(".h")) and (file != "main.c"):
-            if(file[0].islower()):
-                PRINT_MSG("First letter is not uppercase" , file)
-        index =  file.find('_')
-        if(index > -1 and file!="STD_TYPES.h"):
-            if(file[index+1:] != "Config.h"):
-                PRINT_MSG("not a Config file", file)
+        for PATH, dirs, files in os.walk("."): 
+         for filename in files:
+          
+          if (filename.endswith(".c") or filename.endswith(".h")) and(filename!="main.c"):
+            if(filename[0].islower()):
+                PRINT_MSG("First letter is not uppercase" , filename)
+            index =  filename.find('_')
+            if(index > -1 and filename!="STD_TYPES.h"):
+             
+              if(not filename.endswith("Config.h",index+1) and not filename.endswith("config.h",index+1)):
+                PRINT_MSG("not a Config file", filename)
 
-def list_paths(rootdir):
-    listOfPaths = []
-    for subdir, dirs, files in os.walk(rootdir):
-        for file in files:
-             if (os.path.join(subdir, file).endswith('.h') or (os.path.join(subdir, file)).endswith('.c')):
-                p = '\\'.join(os.path.join(subdir, file).split('\\')[0:-1])
-                listOfPaths.append(p)
-    listOfPaths = list(set(listOfPaths))
-    return listOfPaths
+
 
 def main():
-    actual_path = "./src"
-    paths = list_paths(actual_path)
-    for path in paths:
-        CheckFilesName(path)
+    CheckGuardMacros(dir_path)
+    CheckFilesName(dir_path)
 
-    actual_path = "./inc"
-    paths = list_paths(actual_path)
-    for path in paths:
-        CheckFilesName(path)    
-        # TODO: Solving bug at CheckGuardMacros(path)
-        # CheckGuardMacros(path)
-        
+
 
 if __name__ == "__main__":
     main()
