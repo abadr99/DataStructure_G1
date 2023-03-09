@@ -2,7 +2,8 @@
 #include <algorithm>
 #include <string>
 #include "Calculator.h"
-
+#include<iostream>
+using namespace std ; 
 bool EvaluateInfix(string _Exression[] ,uint32_t Size , float &pResult )
 {
     string _PostExression[Size];
@@ -24,7 +25,7 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
     stack <string> Stack_t;
     uint32_t j=0; 
     uint32_t i=0; 
-    bool BracketFlag = false ;
+    uint16_t BracketCounter = 0 ;
     bool Expression_Flag = true ;  
     for(i=0 ; i<Size ; i++ ) 
     { 
@@ -35,10 +36,10 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
         }else if (_Exression[i] == "(")
         {
             Stack_t.push(_Exression[i]);
-            BracketFlag = true ; 
+            BracketCounter ++ ; 
             
         }
-        else if( IsOperator(_Exression[i]) && BracketFlag == true  ) 
+        else if( IsOperator(_Exression[i]) && BracketCounter != 0  ) 
         { 
             while(Stack_t.top() !="(" && priority(_Exression[i]) <= priority(Stack_t.top()) ) 
             {
@@ -59,7 +60,7 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
               Stack_t.pop(); 
             } 
             Stack_t.push(_Exression[i]); 
-        }else if(_Exression[i] == ")" && BracketFlag == true   )
+        }else if(_Exression[i] == ")" && BracketCounter != 0   )
         {
             while( Stack_t.top() != "(") 
             {
@@ -67,7 +68,7 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
                 j++; 
                 Stack_t.pop(); 
             }
-            BracketFlag = false ; 
+            BracketCounter-- ; 
             Stack_t.pop();
             
         }
@@ -76,7 +77,7 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
             Expression_Flag = false ; 
         } 
     }
-    if(BracketFlag == true )
+    if(BracketCounter != 0 )
     {
         Expression_Flag = false ; 
     }
