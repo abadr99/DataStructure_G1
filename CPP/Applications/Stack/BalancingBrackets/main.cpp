@@ -1,5 +1,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello";
+    int x;
+    std::cin >> x;
+    std::cout << x*2;
 }

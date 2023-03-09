@@ -53,7 +53,7 @@ def CheckFilesName(PATH):
         for PATH, dirs, files in os.walk("."): 
          for filename in files:
           
-          if (filename.endswith(".c") or filename.endswith(".h")) and(filename!="main.c"):
+          if (filename.endswith(".cpp") or filename.endswith(".h")) and(filename!="main.cpp"):
             if(filename[0].islower()):
                 PRINT_MSG("First letter is not uppercase" , filename)
             index =  filename.find('_')
