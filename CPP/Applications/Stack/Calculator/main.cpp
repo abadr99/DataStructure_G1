@@ -10,7 +10,6 @@ int main()
     uint32_t Size; 
     uint32_t i; 
     float  result ; 
-    cout<<"Enter Infix Expression (Enter = to evaluate it ) : ";
     for(i=0 ; i<EXPRESSION_SIZE ; i++) 
     { 
         cin>>Exression[i]; 
