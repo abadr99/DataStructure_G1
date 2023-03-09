@@ -19,10 +19,10 @@ int main()
             Size=i; 
             break; 
         } 
-    } 
+    }   
 
     
-    if(EvaluateInfix(Exression , Size , &result))
+    if(EvaluateInfix(Exression , Size , result))
     {   
         //cout << fixed ; /* remove the comment on this line if the output will be more than 6 digit(integer part) */
         cout<< result <<endl ; 

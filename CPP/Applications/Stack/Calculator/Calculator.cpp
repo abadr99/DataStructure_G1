@@ -3,14 +3,14 @@
 #include <string>
 #include "Calculator.h"
 
-bool EvaluateInfix(string _Exression[] ,uint32_t Size , float *pResult )
+bool EvaluateInfix(string _Exression[] ,uint32_t Size , float &pResult )
 {
     string _PostExression[Size];
     uint32_t NewSize; 
     bool Expression_Flag = true ; 
-    if( GetPostFix(_Exression ,  _PostExression , Size , &NewSize) )
+    if( GetPostFix(_Exression ,  _PostExression , Size , NewSize) )
     {
-        (*pResult) = RevesePolishNotation(_PostExression , NewSize);
+        pResult = RevesePolishNotation(_PostExression , NewSize);
     }
     else
     {
@@ -19,9 +19,9 @@ bool EvaluateInfix(string _Exression[] ,uint32_t Size , float *pResult )
     }
     return Expression_Flag ;
 }
-bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size , uint32_t *NewSize  ) 
+bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size , uint32_t &NewSize  ) 
 {
-    stack <string> S1;
+    stack <string> Stack_t;
     uint32_t j=0; 
     uint32_t i=0; 
     bool BracketFlag = false ;
@@ -34,41 +34,41 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
             j++; 
         }else if (_Exression[i] == "(")
         {
-            S1.push(_Exression[i]);
+            Stack_t.push(_Exression[i]);
             BracketFlag = true ; 
             
         }
         else if( IsOperator(_Exression[i]) && BracketFlag == true  ) 
         { 
-            while(S1.top() !="(" && priority(_Exression[i]) <= priority(S1.top()) ) 
+            while(Stack_t.top() !="(" && priority(_Exression[i]) <= priority(Stack_t.top()) ) 
             {
-              _PostExression[j]=S1.top();
+              _PostExression[j]=Stack_t.top();
               j++; 
-              S1.pop();
+              Stack_t.pop();
      
             } 
-            S1.push(_Exression[i]); 
+            Stack_t.push(_Exression[i]); 
         }
         else if( IsOperator(_Exression[i]) ) 
         {
             
-            while(S1.empty() == 0 && priority(_Exression[i]) <= priority(S1.top())) 
+            while(Stack_t.empty() == 0 && priority(_Exression[i]) <= priority(Stack_t.top())) 
             {
-              _PostExression[j]=S1.top();
+              _PostExression[j]=Stack_t.top();
               j++; 
-              S1.pop(); 
+              Stack_t.pop(); 
             } 
-            S1.push(_Exression[i]); 
+            Stack_t.push(_Exression[i]); 
         }else if(_Exression[i] == ")" && BracketFlag == true   )
         {
-            while( S1.top() != "(") 
+            while( Stack_t.top() != "(") 
             {
-                _PostExression[j]=S1.top(); 
+                _PostExression[j]=Stack_t.top(); 
                 j++; 
-                S1.pop(); 
+                Stack_t.pop(); 
             }
             BracketFlag = false ; 
-            S1.pop();
+            Stack_t.pop();
             
         }
         else 
@@ -80,48 +80,48 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
     {
         Expression_Flag = false ; 
     }
-    while(S1.empty()==0) 
+    while(Stack_t.empty()==0) 
     {
-        _PostExression[j]=S1.top(); 
+        _PostExression[j]=Stack_t.top(); 
         j++; 
-        S1.pop(); 
+        Stack_t.pop(); 
     }
-    if(  (j == 1 && IsOperator(_PostExression[0]) )  || j%2 == 0 )
+    if(  (j == 1 && IsOperator(_PostExression[0]) )  || j % 2 == 0 )
     {
         Expression_Flag = false ; 
     }
-    *NewSize =  j ;
+    NewSize =  j ;
     return  Expression_Flag ; 
 
 }
 float RevesePolishNotation(string _Exression[],uint32_t Size) 
 { 
 
-    stack<float>s1 ; 
+    stack<float>Stack_t ; 
     uint32_t j ;
     for( j=0 ; j<Size ; j++) 
     { 
         if(IsNumber(_Exression[j]))
         {
-            s1.push( stof(_Exression[j] ) ) ;
+            Stack_t.push( stof(_Exression[j] ) ) ;
         }
         else if(IsOperator(_Exression[j]) ) 
         { 
             float _Num1 ; 
             float _Num2 ; 
             float _Result ; 
-            _Num2 = s1.top() ; 
-            s1.pop(); 
-            _Num1 = s1.top() ; 
-            s1.pop(); 
+            _Num2 = Stack_t.top() ; 
+            Stack_t.pop(); 
+            _Num1 = Stack_t.top() ; 
+            Stack_t.pop(); 
             _Result = Evaluate(_Num1 , _Num2 ,_Exression[j] ); 
-            s1.push((_Result)); 
+            Stack_t.push((_Result)); 
           
         }
        
 
     } 
-    return s1.top(); 
+    return Stack_t.top(); 
 } 
 bool IsNumber(string _Number)
 {
