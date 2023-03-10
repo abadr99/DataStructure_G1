@@ -1,5 +1,8 @@
 #include <iostream>
-
+#include <string>
+#include "BalancingBrackets.cpp"
 int main() {
-    std::cout << "Hello";
+    string input;
+    getline(cin,input);
+    std::cout <<bracketMatching(input);
 }
