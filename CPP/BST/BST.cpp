@@ -34,7 +34,7 @@ BT::TreeNode_t<T> BST<T>::Helper_Search(T Data) {
         if(temp->Data < Data) {
             temp = temp->RightNode;
         }
-        else if (temp->Data < Data) {
+        else if (temp->Data > Data) {
             temp = temp->LeftNode;
         }
         else {
@@ -86,6 +86,26 @@ void BST<T>::Delete(T Data) {
         Helper_DeleteNode(pIterator);
     }
     // CASE III - Has two children
+    else if (pDeletedElement->RightNode != nullptr && pDeletedElement->LeftNode != nullptr)
+    {
+       auto pIterator = pDeletedElement;
+        pIterator=pIterator->LeftNode;
+        while(pIterator->RightNode)
+        {
+           pIterator=pIterator->RightNode; 
+        }
+        auto Parent = Helper_GetParent(pIterator);
+        Helper_SwapNode(pIterator,pDeletedElement);
+        if (Parent->LeftNode->Data==pIterator->Data)
+        {
+        Parent->LeftNode = nullptr;
+        }
+        else 
+        {
+        Parent->RightNode = nullptr;
+        }
+        Helper_DeleteNode(pIterator);
+    }
 
 }
 template<typename T>
