@@ -139,7 +139,7 @@ BT::TreeNode_t<T> BST<T>::Helper_GetParent(TreeNode_t<T>& pNode) {
 
 
 template<typename T>
-void BST<T>::Helper_Destroy(TreeNode_t<T>& ptr)
+void BST<T>::Helper_Destroy(TreeNode_t<T>& ptr) 
 {
     if(ptr!=nullptr)
     {
@@ -153,6 +153,7 @@ void BST<T>::Helper_Destroy(TreeNode_t<T>& ptr)
         }
         //std::cout << "Deleting node:"<<ptr->Data<<"\n";
         delete ptr;
+        ptr=nullptr;
     }
 }
 

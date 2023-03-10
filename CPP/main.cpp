@@ -24,6 +24,6 @@ int main (int argc, char **argv) {
     B.Delete(80);
     B.Delete(130);
     B.Delete(130);
-    B.~BST();
-    B.InOrder(print);
+    //B.~BST();
+    //B.InOrder(print);
 }
