@@ -21,5 +21,9 @@ int main (int argc, char **argv) {
     B.InOrder(print);
     std::cout<<"\n";
     B.Delete(130);
+    B.Delete(80);
+    B.Delete(130);
+    B.Delete(130);
+    B.~BST();
     B.InOrder(print);
 }
