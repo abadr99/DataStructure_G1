@@ -1,10 +1,11 @@
+#include<iostream>
 #include <stack> 
 #include <algorithm>
 #include <string>
-#include "Calculator.h"
-#include<iostream>
+#include"Calculator.h"
+
 using namespace std ; 
-bool EvaluateInfix(string _Exression[] ,uint32_t Size , float &pResult )
+bool Calculator::EvaluateInfix(string _Exression[] ,uint32_t Size , float &pResult )
 {
     string _PostExression[Size];
     uint32_t NewSize; 
@@ -20,7 +21,7 @@ bool EvaluateInfix(string _Exression[] ,uint32_t Size , float &pResult )
     }
     return Expression_Flag ;
 }
-bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size , uint32_t &NewSize  ) 
+bool Calculator:: GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size , uint32_t &NewSize  ) 
 {
     stack <string> Stack_t;
     uint32_t j=0; 
@@ -95,7 +96,7 @@ bool GetPostFix(string _Exression[]  , string _PostExression[]  , uint32_t Size 
     return  Expression_Flag ; 
 
 }
-float RevesePolishNotation(string _Exression[],uint32_t Size) 
+float Calculator:: RevesePolishNotation(string _Exression[],uint32_t Size) 
 { 
 
     stack<float>Stack_t ; 
@@ -124,7 +125,7 @@ float RevesePolishNotation(string _Exression[],uint32_t Size)
     } 
     return Stack_t.top(); 
 } 
-bool IsNumber(string _Number)
+bool Calculator::IsNumber(string _Number)
 {
     bool LocReturn = false ; 
     if(_Number[0] == '-')
@@ -138,7 +139,7 @@ bool IsNumber(string _Number)
     return LocReturn ; 
 }
  
-bool IsOperator(string _operator) 
+bool Calculator:: IsOperator(string _operator) 
 { 
     bool LocReturn = false ; 
     if(_operator == "+" || _operator == "-" ||  _operator == "*" || _operator == "/") 
@@ -148,7 +149,7 @@ bool IsOperator(string _operator)
     } 
     return LocReturn ; 
 } 
-float Evaluate(float Num1 ,float Num2  , string _operator) 
+float Calculator:: Evaluate(float Num1 ,float Num2  , string _operator) 
 { 
     float Ret_Result ; 
     if(_operator == "+") 
@@ -171,7 +172,7 @@ float Evaluate(float Num1 ,float Num2  , string _operator)
     return Ret_Result ; 
 } 
 
-bool priority (string oprator)
+bool Calculator:: priority (string oprator)
 {
     bool RetFlag; 
     if(oprator == "+" || oprator =="-") 
