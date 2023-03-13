@@ -1,37 +1,37 @@
 #include <stack>
 #include <bits/stdc++.h>
 using namespace std;
-bool bracketMatching(string ss)
-{bool f=1;
-    stack<char>s;
-  for(int i=0;i<ss.length();i++)
+bool bracketMatching(string given_string)
+{bool flag=1;
+    stack<char>Stack;
+  for(int i=0;i<given_string.length();i++)
   {
-      if(ss[i]=='{'||ss[i]=='('||ss[i]=='[')
+      if(given_string[i]=='{'||given_string[i]=='('||given_string[i]=='[')
         {
-           s.push(ss[i]);
+           Stack.push(given_string[i]);
         }
        else
-       {if (s.empty())
+       {if (Stack.empty())
        {
-           f=0;
+           flag=0;
            break;
        }
 
-        if(ss[i]=='}'&&s.top()=='{'||ss[i]==']'&&s.top()=='['||ss[i]==')'&&s.top()=='(')
+        if(given_string[i]=='}'&&Stack.top()=='{'||given_string[i]==']'&&Stack.top()=='['||given_string[i]==')'&&Stack.top()=='(')
             {
-                s.pop();
+                Stack.pop();
             }
             else
             {
-                f=0;
+                flag=0;
                 break;
             }
        }
 
   }
-  if(s.empty()==0)
+  if(Stack.empty()==0)
   {
-      f=0;
+      flag=0;
   }
-  return f;
+  return flag;
 }
