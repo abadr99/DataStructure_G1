@@ -20,7 +20,7 @@ void BST<T>::Helper_Insert(TreeNode_t<T>& pSubTree, T Val) {
     else {
         // Erorr handling
     }
- }
+ }//hi
 template<typename T>
 void BST<T>::Insert(T Data) {
     Helper_Insert(this->pRoot,Data);
