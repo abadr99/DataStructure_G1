@@ -6,7 +6,7 @@ using namespace std;
 int main() 
 {
 
-    Calculator obj;
+    Calculator Calculator_t;
     string Exression[EXPRESSION_SIZE]; 
     uint32_t Size; 
     uint32_t i; 
@@ -20,7 +20,7 @@ int main()
             break; 
         } 
     }   
-    if(obj.EvaluateInfix(Exression , Size , result))
+    if(Calculator_t.EvaluateInfix(Exression , Size , result))
     {   
         //cout << fixed ; /* remove the comment on this line if the output will be more than 6 digit(integer part) */
         cout<< result <<endl ; 
