@@ -70,8 +70,13 @@ void BST<T>::Delete(T Data) {
         auto pIterator = pDeletedElement;
         while(pIterator->RightNode) {
             Helper_SwapNode(pIterator,pIterator->RightNode);
+            pIterator = pIterator->RightNode;
         }
-        auto Parent = Helper_GetParent(pIterator);
+        auto Parent = this->pRoot;
+        while(Parent) {
+            if(Parent->RightNode == pIterator) break;
+            Parent = Parent->RightNode;
+        }
         Parent->RightNode = nullptr;
         Helper_DeleteNode(pIterator);
     }
