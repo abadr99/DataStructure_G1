@@ -68,13 +68,27 @@ void BST<T>::Delete(T Data) {
     // CASE II-a: Have one right child 
     else if (pDeletedElement->RightNode != nullptr && pDeletedElement->LeftNode == nullptr ) {
         auto Parent = Helper_GetParent(pDeletedElement);
+        if (pDeletedElement->Data >Parent->Data )
+        {
         Parent->RightNode = pDeletedElement->RightNode;
+        }
+        else
+        {
+        Parent->LeftNode = pDeletedElement->RightNode;
+        }
         Helper_DeleteNode(pDeletedElement);
     }
     // CASE II-b: Have one left child 
     else if (pDeletedElement->RightNode == nullptr && pDeletedElement->LeftNode != nullptr ) {
         auto Parent = Helper_GetParent(pDeletedElement);
+        if (pDeletedElement->Data >Parent->Data )
+        {
+        Parent->RightNode = pDeletedElement->LeftNode;
+        }
+        else
+        {
         Parent->LeftNode = pDeletedElement->LeftNode;
+        } 
         Helper_DeleteNode(pDeletedElement);
     }
     // CASE III - Has two children

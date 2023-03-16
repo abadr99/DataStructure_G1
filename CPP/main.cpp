@@ -18,12 +18,21 @@ int main (int argc, char **argv) {
     B.Insert(130);
     B.Insert(110);
     B.Insert(140);
-    B.LevelOrder(print);
+    B.Insert(120);
+    B.Insert(115);
+    B.Insert(125);
+    B.Insert(75);
+    B.Insert(71);
+    B.Insert(77);
+    B.InOrder(print);
     std::cout<<"\n";
-    /*B.Delete(130);
+    B.Delete(110);
+    B.InOrder(print);
+    std::cout<<"\n";
     B.Delete(80);
+    B.InOrder(print);
+    std::cout<<"\n";
     B.Delete(130);
-    B.Delete(130);*/
-    //B.~BST();
-    //B.InOrder(print);
+    B.InOrder(print);
+    std::cout<<"\n";
 }
