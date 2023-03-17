@@ -1,7 +1,7 @@
 CC := g++
 CCFLAGS:= -fdiagnostics-color=always -g -Wall #-c 
 
-DIRS := $(shell cat ./DataStructures)
+DIRS := $(shell cat ./build.dir)
 
 #Stack/Stack.cpp
 SRC_PATH :=  $(foreach dir,$(DIRS),$(dir)) 
@@ -14,6 +14,9 @@ Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 all:
 	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o main.exe
 	@./main.exe
+
+build:
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o main.exe
 
 clean:
 	@echo CLEANING ..........
