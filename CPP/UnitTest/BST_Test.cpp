@@ -108,3 +108,21 @@ TEST(BST_Delete)
         _Iterator++;
     }
 }
+TEST(BST_Search)
+{
+    using namespace DSA::DS::BINARY_TREE::BST;
+    START_TEST(BST_Search  TEST);
+    BST<int> B;
+    B.Insert(100);
+    B.Insert(70);
+    B.Insert(50);
+    B.Insert(80);
+    B.Insert(130);
+    B.Insert(110);
+    EXPECT_EQ(B.Search(130),FOUND );
+    EXPECT_EQ(B.Search(100),FOUND );
+    EXPECT_EQ(B.Search(50 ),FOUND );
+    EXPECT_EQ(B.Search(30 ),NOT_FOUND );
+
+
+}

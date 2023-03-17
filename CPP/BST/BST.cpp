@@ -70,11 +70,11 @@ void BST<T>::Delete(T Data) {
         auto Parent = Helper_GetParent(pDeletedElement);
         if (pDeletedElement->Data >Parent->Data )
         {
-        Parent->RightNode = pDeletedElement->RightNode;
+            Parent->RightNode = pDeletedElement->RightNode;
         }
         else
         {
-        Parent->LeftNode = pDeletedElement->RightNode;
+            Parent->LeftNode = pDeletedElement->RightNode;
         }
         Helper_DeleteNode(pDeletedElement);
     }
@@ -83,11 +83,11 @@ void BST<T>::Delete(T Data) {
         auto Parent = Helper_GetParent(pDeletedElement);
         if (pDeletedElement->Data >Parent->Data )
         {
-        Parent->RightNode = pDeletedElement->LeftNode;
+            Parent->RightNode = pDeletedElement->LeftNode;
         }
         else
         {
-        Parent->LeftNode = pDeletedElement->LeftNode;
+            Parent->LeftNode = pDeletedElement->LeftNode;
         } 
         Helper_DeleteNode(pDeletedElement);
     }
