@@ -15,4 +15,7 @@ int main (int argc, char **argv) {
         //RUN_INTEGRATION_TESTS();
     }
 
+    if(Opt->IsExist("help")) {
+        Opt->PrintHelpMsg();
+    }
 }

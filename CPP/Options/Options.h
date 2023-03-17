@@ -15,11 +15,10 @@ class Options
         void ParseOptions(int argc, char** CMD);
         std::vector<std::string> GetOptions();
         bool IsExist(std::string opt);
+        void PrintHelpMsg();
     private:
         static Options* opt;
         std::vector<std::string> OptionsVector;
-        int32_t Find(char* string, char* Token);
-        void PrintHelpMsg();
         Options(const Options& obj) = delete;
         Options();
 };

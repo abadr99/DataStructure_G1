@@ -12,11 +12,10 @@ Command := $(firstword $(MAKECMDGOALS))
 Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
 all:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o main.exe
-	@./main.exe
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
 
 build:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o main.exe
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
 
 clean:
 	@echo CLEANING ..........

@@ -22,9 +22,10 @@ void BST<T>::Helper_Insert(TreeNode_t<T>& pSubTree, T Val) {
     }
  }//hi
 template<typename T>
-void BST<T>::Insert(T Data) {
+BST<T>& BST<T>::Insert(T Data) {
     Helper_Insert(this->pRoot,Data);
     this->_Size ++;
+    return *this;
 }
 
 template<typename T>
