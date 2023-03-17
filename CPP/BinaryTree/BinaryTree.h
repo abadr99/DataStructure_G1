@@ -1,6 +1,6 @@
 #ifndef _BINARY_TREE_H_
 #define _BINARY_TREE_H_
-
+#include <vector>
 namespace DSA{
 namespace DS{
 namespace BINARY_TREE {
@@ -21,6 +21,7 @@ class BinaryTree {
     public:
         BinaryTree();
         void InOrder(void (*pFun)(T& x));
+        void InOrder(std::vector<T> &TreeVector);
         void PreOrder(void (*pFun)(T& x));
         void PostOrder(void (*pFun)(T& x));
         void LevelOrder(void (*pFun)(T& pElement)) ;
@@ -32,6 +33,7 @@ class BinaryTree {
         uint32_t _Size;
         uint32_t _Height;
         void recur_InOrder(TreeNode_t<T> PNode, void (*pFun)(T& pElement));
+        void recur_InOrder(TreeNode_t<T> PNode, std::vector<T>  &TreeVector);
         void recur_PostOrder(TreeNode_t<T> PNode, void (*pFun)(T& pElement));
         void recur_PreOrder(TreeNode_t<T> PNode, void (*pFun)(T& pElement));
 };
