@@ -14,7 +14,7 @@ enum Search_State {
 template <typename T>
 class BST : public BinaryTree<T> {
     public :
-        void Insert(T Data);
+        BST<T>& Insert(T Data); 
         void Delete(T Data);
         Search_State Search(T Data);
         ~BST();
