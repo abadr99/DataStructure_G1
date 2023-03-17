@@ -54,7 +54,33 @@ void SortingAlgrothim<T>::Swap(T& First,T& Second)
     Second = First - Second;
     First  = First - Second;
 }
-
-
+template<typename T>
+void SortingAlgrothim<T>::ShellSort(T arr[], uint32_t size, SortingType_t SortingType )
+{
+    uint32_t gap;
+    for(gap = size/2 ; gap>0 ; gap/=2)
+    {
+        for(uint32_t Iterator1 = gap ; Iterator1 < size ; Iterator1++)
+        {
+            T tempIndex = arr[Iterator1];
+            uint32_t Iterator2 = 0;
+            if(SortingType == SortingType_t::ASCENDING)
+            {
+                for(Iterator2 = Iterator1 ; (Iterator2 >= gap) && (arr[Iterator2 - gap] > tempIndex) ; Iterator2-=gap)
+                {
+                    arr[Iterator2] = arr[Iterator2 - gap];
+                }
+            }
+            else if(SortingType == SortingType_t::DESCENDING)
+            {
+                for(Iterator2 = Iterator1 ; (Iterator2 >= gap) && (arr[Iterator2 - gap] < tempIndex) ; Iterator2-=gap)
+                {
+                    arr[Iterator2] = arr[Iterator2 - gap];
+                }
+            }
+            arr[Iterator2] = tempIndex;
+        }
+    }
+}
 
 INSTANTIATE_CLASS_TEMPLATES(SortingAlgrothim);
