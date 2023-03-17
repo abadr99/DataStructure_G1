@@ -21,7 +21,7 @@ Options* Options::GetOptionsObj() {
 }
 
 void Options::ParseOptions(int argc, char** CMD) {
-    if(strcmp(CMD[1], "help")) {
+    if(!strcmp(CMD[1], "help")) {
         OptionsVector.push_back(CMD[1]);
         return;
     }
@@ -33,7 +33,7 @@ void Options::ParseOptions(int argc, char** CMD) {
             OptionsVector.push_back(CMD[iOptions]);
         }
         else {
-            std::cout << "Error Option : " << CMD[iOptions]; 
+            std::cout << "Error Option : " << CMD[iOptions] << "\n"; 
             exit(EXIT_FAILURE);
         }
         
