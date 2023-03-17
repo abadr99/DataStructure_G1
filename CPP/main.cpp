@@ -1,18 +1,18 @@
 #include <iostream>
 #include <assert.h>
-#include <vector>
-#include "utils.h"
-#include "BST.h"
-#include "BinaryTree.h"
-#include "SonicTest.h"
-#include "BST_Test.h"
+#include "Options/Options.h"
+#include "UnitTests.h"
 
-using namespace DSA::DS::BINARY_TREE::BST;
 int main (int argc, char **argv) {
+    Options* Opt = Options::GetOptionsObj();
+    Opt->ParseOptions(argc,argv);
+    
+    if(Opt->IsExist("uTest") || Opt->IsExist("$u")) {
+        RUN_UNIT_TESTS();
+    }
 
-    RUN_TEST(BST_Insert);
-    RUN_TEST(BST_Delete);
-    RUN_TEST(BST_Search);
-    std::cout<<"\n";
+    if(Opt->IsExist("iTest") || Opt->IsExist("$i")) {
+        //RUN_INTEGRATION_TESTS();
+    }
 
 }
