@@ -25,6 +25,30 @@ void SortingAlgrothim<T>::SelectionSort(T arr[], uint32_t size, SortingType_t So
 }
 
 template<typename T>
+void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t SortingType ) 
+{
+    for(uint32_t i = 0 ; i < Size; i++)
+    {
+        T key = arr[i];
+        int j = i-1;
+        if (SortingType == SortingType_t::ASCENDING) {
+            while(j>=0 && arr[j]>key) {
+                arr[j+1] = arr[j];
+                j-=1;
+            }
+        }
+        else if (SortingType == SortingType_t::DESCENDING) { 
+            while(j>=0 && arr[j]<key) {
+                arr[j+1] = arr[j];
+                j-=1;
+            }
+        }
+        arr[j+1] = key;
+    }
+}
+
+
+template<typename T>
 uint32_t SortingAlgrothim<T>::GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex) {
     uint32_t Iterator = FirstIndex;
     uint32_t Min_Index = FirstIndex;
