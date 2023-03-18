@@ -4,35 +4,23 @@
 #include "Stack.h"
 #include "BinaryTree.h"
 #include "BST.h"
-
-void print(int& x) {
-    std::cout << x << " ";
+#include "SortingAlgrothims/Sort.h"
+using namespace DSA::Algrothim::Sort;
+#define size 6
+void Print(int arr[],uint32_t Size){
+for (uint32_t i=0;i<Size;i++){
+    std::cout<<arr[i]<<" ";
 }
-using namespace DSA::DS::BINARY_TREE::BST;
+}
+
 int main (int argc, char **argv) {
-    BST<int> B;
-    B.Insert(100);
-    B.Insert(70);
-    B.Insert(50);
-    B.Insert(80);
-    B.Insert(130);
-    B.Insert(110);
-    B.Insert(140);
-    B.Insert(120);
-    B.Insert(115);
-    B.Insert(125);
-    B.Insert(75);
-    B.Insert(71);
-    B.Insert(77);
-    B.InOrder(print);
+    SortingAlgrothim<int> S;
+    SortingType_t T;
+    int arr[size]={100,12,13,5,6,27};
+    S.HeapSort(arr,size,DESCENDING);
+    Print(arr,size);
     std::cout<<"\n";
-    B.Delete(110);
-    B.InOrder(print);
-    std::cout<<"\n";
-    B.Delete(80);
-    B.InOrder(print);
-    std::cout<<"\n";
-    B.Delete(130);
-    B.InOrder(print);
-    std::cout<<"\n";
+    
+
+
 }
