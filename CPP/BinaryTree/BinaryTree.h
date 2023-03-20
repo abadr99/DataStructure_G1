@@ -26,6 +26,7 @@ class BinaryTree {
         void PostOrder(void (*pFun)(T& x));
         void LevelOrder(void (*pFun)(T& pElement)) ;
         bool IsEmpty() const;
+        void graph();
         uint32_t GetSize() const;
         uint32_t GetHeight(TreeNode_t<T> PNode) const;
     protected:
