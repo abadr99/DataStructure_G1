@@ -23,6 +23,56 @@ void SortingAlgrothim<T>::SelectionSort(T arr[], uint32_t size, SortingType_t So
         }        
     }
 }
+template<typename T>
+void SortingAlgrothim<T>::ShellSort(T arr[], uint32_t size, SortingType_t SortingType )
+{
+    for(uint32_t gap = size/2 ; gap > 0 ; gap/=2)
+    {
+        for(uint32_t Iterator1 = gap ; Iterator1 < size ; Iterator1++)
+        {
+            T tempIndex = arr[Iterator1];
+            uint32_t Iterator2 = 0;
+            if(SortingType == SortingType_t::ASCENDING)
+            {
+                for(Iterator2 = Iterator1 ; (Iterator2 >= gap) && (arr[Iterator2 - gap] > tempIndex) ; Iterator2-=gap)
+                {
+                    arr[Iterator2] = arr[Iterator2 - gap];
+                }
+            }
+            else if(SortingType == SortingType_t::DESCENDING)
+            {
+                for(Iterator2 = Iterator1 ; (Iterator2 >= gap) && (arr[Iterator2 - gap] < tempIndex) ; Iterator2-=gap)
+                {
+                    arr[Iterator2] = arr[Iterator2 - gap];
+                }
+            }
+            arr[Iterator2] = tempIndex;
+        }
+    }
+}
+template<typename T>
+void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t SortingType ) 
+{
+    for(uint32_t i = 0 ; i < Size; i++)
+    {
+        T key = arr[i];
+        int j = i-1;
+        if (SortingType == SortingType_t::ASCENDING) {
+            while(j>=0 && arr[j]>key) {
+                arr[j+1] = arr[j];
+                j-=1;
+            }
+        }
+        else if (SortingType == SortingType_t::DESCENDING) { 
+            while(j>=0 && arr[j]<key) {
+                arr[j+1] = arr[j];
+                j-=1;
+            }
+        }
+        arr[j+1] = key;
+    }
+}
+
 
 template<typename T>
 uint32_t SortingAlgrothim<T>::GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex) {
@@ -54,7 +104,6 @@ void SortingAlgrothim<T>::Swap(T& First,T& Second)
     Second = First - Second;
     First  = First - Second;
 }
-
 
 
 INSTANTIATE_CLASS_TEMPLATES(SortingAlgrothim);
