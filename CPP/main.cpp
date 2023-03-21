@@ -2,6 +2,8 @@
 #include <assert.h>
 #include "Options/Options.h"
 #include "UnitTests.h"
+#include "BinaryTree.h"
+#include "BST.h"
 
 int main (int argc, char **argv) {
     Options* Opt = Options::GetOptionsObj();
@@ -18,4 +20,6 @@ int main (int argc, char **argv) {
     if(Opt->IsExist("help")) {
         Opt->PrintHelpMsg();
     }
+   
+    
 }
