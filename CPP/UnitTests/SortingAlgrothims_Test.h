@@ -4,5 +4,5 @@
 TEST(SORTING_Insertion);
 TEST(SORTING_Shell);
 TEST(SORTING_Selection);
-
+TEST(SORTING_COUNTING);
 #endif //_SORTING_TEST_H__

@@ -72,6 +72,41 @@ void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t So
         arr[j+1] = key;
     }
 }
+template<typename T>
+void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size,uint32_t Range, SortingType_t SortingType )
+{   Range++;
+    T Count_Arr[Range]={0};
+    uint32_t index=0;
+    for(uint32_t i =0 ; i<size ;i++)
+    {
+        
+        Count_Arr[arr[i]]++;
+    }
+    if(SortingType == SortingType_t::ASCENDING)
+    {
+        for (uint32_t i = 0 ; i<Range ; i++)
+        {
+            while (Count_Arr[i]!=0)
+            {
+                arr[index]=i;
+                Count_Arr[i]--;
+                index++; 
+            }
+        }
+    }
+    else if (SortingType == SortingType_t::DESCENDING)
+    {
+        for (int32_t i = Range-1 ; i>=0; i--)
+        {
+            while (Count_Arr[i]!=0)
+            {
+                arr[index]=i;
+                Count_Arr[i]--;
+                index++; 
+            }     
+        }
+    }
+}
 
 
 template<typename T>

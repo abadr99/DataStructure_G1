@@ -29,7 +29,7 @@ public:
                           SortingType_t SortingType = SortingType_t::ASCENDING); // Refat
     
     static void CountingSort(T arr[], uint32_t size,
-                             SortingType_t SortingType = SortingType_t::ASCENDING); //manar
+                             uint32_t Range,SortingType_t SortingType = SortingType_t::ASCENDING); //manar
     
     static void RadixSort(T arr[], uint32_t size,
                           SortingType_t SortingType = SortingType_t::ASCENDING); // nora
