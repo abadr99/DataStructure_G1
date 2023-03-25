@@ -22,9 +22,10 @@ void BST<T>::Helper_Insert(TreeNode_t<T>& pSubTree, T Val) {
     }
  }//hi
 template<typename T>
-void BST<T>::Insert(T Data) {
+BST<T>& BST<T>::Insert(T Data) {
     Helper_Insert(this->pRoot,Data);
     this->_Size ++;
+    return *this;
 }
 
 template<typename T>
@@ -70,11 +71,11 @@ void BST<T>::Delete(T Data) {
         auto Parent = Helper_GetParent(pDeletedElement);
         if (pDeletedElement->Data >Parent->Data )
         {
-        Parent->RightNode = pDeletedElement->RightNode;
+            Parent->RightNode = pDeletedElement->RightNode;
         }
         else
         {
-        Parent->LeftNode = pDeletedElement->RightNode;
+            Parent->LeftNode = pDeletedElement->RightNode;
         }
         Helper_DeleteNode(pDeletedElement);
     }
@@ -83,18 +84,19 @@ void BST<T>::Delete(T Data) {
         auto Parent = Helper_GetParent(pDeletedElement);
         if (pDeletedElement->Data >Parent->Data )
         {
-        Parent->RightNode = pDeletedElement->LeftNode;
+            Parent->RightNode = pDeletedElement->LeftNode;
         }
         else
         {
-        Parent->LeftNode = pDeletedElement->LeftNode;
+            Parent->LeftNode = pDeletedElement->LeftNode;
         } 
         Helper_DeleteNode(pDeletedElement);
     }
     // CASE III - Has two children
     else if (pDeletedElement->RightNode != nullptr && pDeletedElement->LeftNode != nullptr)
     {
-       auto pIterator = pDeletedElement;
+ 
+        auto pIterator = pDeletedElement;
         pIterator=pIterator->LeftNode;
         while(pIterator->RightNode)
         {
@@ -102,13 +104,20 @@ void BST<T>::Delete(T Data) {
         }
         auto Parent = Helper_GetParent(pIterator);
         Helper_SwapNode(pIterator,pDeletedElement);
-        if (Parent->LeftNode->Data==pIterator->Data)
+        if (pIterator->LeftNode!=nullptr)
         {
-        Parent->LeftNode = nullptr;
+            Parent->RightNode=pIterator->LeftNode;
         }
-        else 
+        else
         {
-        Parent->RightNode = nullptr;
+           if (Parent->LeftNode->Data==pIterator->Data)
+            {
+                Parent->LeftNode = nullptr;
+            }
+            else
+            {
+                Parent->RightNode = nullptr; 
+            } 
         }
         Helper_DeleteNode(pIterator);
     }

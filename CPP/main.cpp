@@ -1,26 +1,23 @@
 #include <iostream>
 #include <assert.h>
-#include "utils.h"
-#include "Stack.h"
+#include "Options/Options.h"
+#include "UnitTests.h"
 #include "BinaryTree.h"
 #include "BST.h"
-#include "SortingAlgrothims/Sort.h"
-using namespace DSA::Algrothim::Sort;
-#define size 6
-void Print(int arr[],uint32_t Size){
-for (uint32_t i=0;i<Size;i++){
-    std::cout<<arr[i]<<" ";
-}
-}
 
 int main (int argc, char **argv) {
-    SortingAlgrothim<int> S;
-    SortingType_t T;
-    int arr[size]={100,12,13,5,6,27};
-    S.HeapSort(arr,size,DESCENDING);
-    Print(arr,size);
-    std::cout<<"\n";
+    Options* Opt = Options::GetOptionsObj();
+    Opt->ParseOptions(argc,argv);
     
+    if(Opt->IsExist("uTest") || Opt->IsExist("$u")) {
+        RUN_UNIT_TESTS();
+    }
 
+    if(Opt->IsExist("iTest") || Opt->IsExist("$i")) {
+        //RUN_INTEGRATION_TESTS();
+    }
 
+    if(Opt->IsExist("help")) {
+        Opt->PrintHelpMsg();
+    }
 }

@@ -1,17 +1,26 @@
 #include <iostream>
+#include <vector>
 #include <utils.h>
 #include "BinaryTree.h"
 #include <queue>
+#include <fstream>
 using namespace DSA::DS::BINARY_TREE;
-
+using namespace std;
 template<typename T>
 BinaryTree<T>::BinaryTree() : pRoot(nullptr), _Size(0), _Height(0)
 {
 
 }
+
 template<typename T>
 void BinaryTree<T>::InOrder(void (*pFun)(T& pElement)) {
     recur_InOrder(pRoot, pFun);
+}
+
+template<typename T>
+void BinaryTree<T>:: InOrder(std::vector<T> &TreeVector)
+{
+    recur_InOrder(pRoot, TreeVector);
 }
 template<typename T>
 void BinaryTree<T>::LevelOrder(void (*pFun)(T& pElement)) {
@@ -36,6 +45,51 @@ void BinaryTree<T>::LevelOrder(void (*pFun)(T& pElement)) {
     }
 
  }
+}
+template<typename T> 
+void BinaryTree<T>::graph() { 
+ std::queue<TreeNode_t<T> >q; 
+ if(pRoot==nullptr) 
+ { 
+    return; 
+ }int nullcounter=0; 
+ q.push(pRoot); 
+ ofstream foutput; 
+ ifstream finput; 
+ finput.open ("graph.dot"); 
+ //foutput.open ("graph.dot",ios::app); 
+foutput.open("graph.dot", std::ofstream::out | std::ofstream::trunc); 
+ if(finput.is_open()) 
+foutput<<"digraph G{\n"; 
+ while(q.empty()==0) 
+ { 
+    TreeNode_t<T> node =q.front(); 
+ 
+    //pFun(node->Data); 
+    q.pop(); 
+    if(node->LeftNode!=nullptr) 
+    {foutput<<node->Data<<"->"<<node->LeftNode->Data<<std::endl; 
+        q.push(node->LeftNode); 
+    } 
+    else if (node->LeftNode==nullptr 
+&&node->RightNode!=nullptr) 
+    { 
+        foutput<<node->Data<<"->"<<"n"<<nullcounter<<std::endl; 
+        nullcounter++; 
+    } 
+    if (node->RightNode!=nullptr) 
+    {foutput<<node->Data<<"->"<<node->RightNode->Data<<std::endl; 
+        q.push(node->RightNode); 
+    } 
+    else if (node->RightNode==nullptr&&node->LeftNode!=nullptr) 
+    { 
+        foutput<<node->Data<<"->"<<"n"<<nullcounter<<std::endl; 
+        nullcounter++; 
+    }} 
+    foutput<<"}\n"; 
+finput.close(); 
+ foutput.close(); 
+ 
 }
 // TODO @Noran
 template<typename T>
@@ -101,6 +155,18 @@ void BinaryTree<T>::recur_InOrder(TreeNode_t<T> PNode, void (*pFun)(T& pElement)
     recur_InOrder(PNode->LeftNode, pFun);
     pFun(PNode->Data);
     recur_InOrder(PNode->RightNode, pFun);
+}
+
+template<typename T>
+void BinaryTree<T>:: recur_InOrder(TreeNode_t<T> PNode, std::vector<T> &TreeVector)
+{
+    if(PNode== nullptr) {
+        return;
+    }
+    // recur left 
+    recur_InOrder(PNode->LeftNode, TreeVector);
+    TreeVector.push_back(PNode->Data);
+    recur_InOrder(PNode->RightNode, TreeVector);
 }
 
 INSTANTIATE_CLASS_TEMPLATES(BinaryTree);
