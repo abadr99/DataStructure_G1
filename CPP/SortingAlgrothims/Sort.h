@@ -45,6 +45,7 @@ public:
 private:
     static uint32_t GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
     static uint32_t GetMaxIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
+    static void CountingSortHelper(T arr[], uint32_t size, uint32_t place, SortingType_t SortingType = SortingType_t::ASCENDING);
     static void Swap(T& First,T& Second);
 };
 
