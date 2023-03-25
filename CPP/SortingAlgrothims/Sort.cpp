@@ -1,6 +1,8 @@
+#include <iostream>
 #include <stdint.h>
 #include "utils.h"
 #include "Sort.h"
+#include <vector>
 
 
 using namespace DSA::Algrothim::Sort;
@@ -73,14 +75,16 @@ void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t So
     }
 }
 template<typename T>
-void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size,uint32_t Range, SortingType_t SortingType )
-{   Range++;
-    T Count_Arr[Range]={0};
+void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t SortingType )
+{  
+    uint32_t Max_Element = arr[SortingAlgrothim::GetMaxIndex(arr,0,size-1)];
+    uint32_t Min_Element = arr[SortingAlgrothim::GetMinIndex(arr,0,size)];
+    uint32_t Range=Max_Element-Min_Element +1;
+    std::vector<T> Count_Arr(Range,0);
     uint32_t index=0;
     for(uint32_t i =0 ; i<size ;i++)
     {
-        
-        Count_Arr[arr[i]]++;
+        Count_Arr[arr[i]-Min_Element]++;
     }
     if(SortingType == SortingType_t::ASCENDING)
     {
@@ -88,19 +92,19 @@ void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size,uint32_t Range, So
         {
             while (Count_Arr[i]!=0)
             {
-                arr[index]=i;
+                arr[index]=i+Min_Element;
                 Count_Arr[i]--;
                 index++; 
             }
         }
     }
     else if (SortingType == SortingType_t::DESCENDING)
-    {
-        for (int32_t i = Range-1 ; i>=0; i--)
+    {  
+      for (int32_t i = Range-1 ; i>=0; i--)
         {
             while (Count_Arr[i]!=0)
             {
-                arr[index]=i;
+                arr[index]=i+Min_Element;
                 Count_Arr[i]--;
                 index++; 
             }     
