@@ -73,6 +73,15 @@ void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t So
     }
 }
 
+template<typename T>
+void SortingAlgrothim<T>::RadixSort(T arr[], uint32_t size,SortingType_t SortingType  )
+{
+    T max = arr[GetMaxIndex(arr,0,size)];
+    for(uint32_t place = 1 ; max/place > 0 ; place *= 10)
+    {
+        CountingSortHelper(arr ,size ,place ,SortingType );
+    }
+}
 
 template<typename T>
 uint32_t SortingAlgrothim<T>::GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex) {
@@ -105,5 +114,41 @@ void SortingAlgrothim<T>::Swap(T& First,T& Second)
     First  = First - Second;
 }
 
-
+template<typename T>
+void SortingAlgrothim<T>::CountingSortHelper(T arr[], uint32_t size, uint32_t place, SortingType_t SortingType)
+{
+    const uint32_t max = 10;
+    uint32_t count[max] = {0};
+    T output[size];
+    for(uint32_t Iterator = 0 ; Iterator < size ; Iterator ++)
+    {
+        if(SortingType == ASCENDING)
+        {
+            count[(arr[Iterator] / place) % 10] ++;
+        }
+        else if(SortingType == DESCENDING)
+        {
+            count[9 -(arr[Iterator] / place) % 10] ++;
+        }
+    }
+    for(uint32_t Iterator = 1 ; Iterator < max ; Iterator ++)
+    {
+        count[Iterator] += count[Iterator - 1];
+    }
+    for(int32_t Iterator = size -1 ; Iterator >= 0 ; Iterator --)
+    {
+        if(SortingType == ASCENDING)
+        {
+            output[--count[(arr[Iterator] / place) % 10]] =arr[Iterator];
+        }
+        else if(SortingType == DESCENDING)
+        {
+            output[--count[9 -(arr[Iterator] / place) % 10]] =arr[Iterator];
+        }
+    }
+    for(uint32_t Iterator = 0 ; Iterator < size ; Iterator ++)
+    {
+        arr[Iterator] = output [Iterator];
+    }
+}
 INSTANTIATE_CLASS_TEMPLATES(SortingAlgrothim);
