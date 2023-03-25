@@ -46,6 +46,8 @@ private:
     static uint32_t GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
     static uint32_t GetMaxIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
     static void Swap(T& First,T& Second);
+    static uint32_t Heapify_Max(T arr[], uint32_t size);
+    static uint32_t Heapify_Min(T arr[], uint32_t size);
 };
 
 }}} // DSA::Algrothim::Sort

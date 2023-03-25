@@ -20,6 +20,4 @@ int main (int argc, char **argv) {
     if(Opt->IsExist("help")) {
         Opt->PrintHelpMsg();
     }
-   
-    
 }
