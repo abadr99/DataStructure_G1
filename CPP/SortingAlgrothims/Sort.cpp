@@ -80,7 +80,7 @@ void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t Sor
     uint32_t Max_Element = arr[SortingAlgrothim::GetMaxIndex(arr,0,size-1)];
     uint32_t Min_Element = arr[SortingAlgrothim::GetMinIndex(arr,0,size)];
     uint32_t Range=Max_Element-Min_Element +1;
-    std::vector<T> Count_Arr(Range,0);
+    T * Count_Arr=new T[Range]{0};
     uint32_t index=0;
     for(uint32_t i =0 ; i<size ;i++)
     {
@@ -110,6 +110,7 @@ void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t Sor
             }     
         }
     }
+    delete [] Count_Arr;
 }
 
 
