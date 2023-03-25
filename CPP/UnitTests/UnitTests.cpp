@@ -10,4 +10,5 @@ void RUN_UNIT_TESTS() {
     RUN_TEST(SORTING_Insertion);
     RUN_TEST(SORTING_Shell);
     RUN_TEST(SORTING_Selection);
+    RUN_TEST(SORTING_COUNTING);
 }
