@@ -3,7 +3,7 @@
 #include "utils.h"
 #include "Sort.h"
 #include <vector>
-
+#include "DynamicArray.h"
 
 using namespace DSA::Algrothim::Sort;
 
@@ -77,22 +77,24 @@ void SortingAlgrothim<T>::InsertionSort(T arr[], uint32_t Size, SortingType_t So
 template<typename T>
 void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t SortingType )
 {  
+    using namespace DSA::DS::dynamic_array;
     uint32_t Max_Element = arr[SortingAlgrothim::GetMaxIndex(arr,0,size-1)];
     uint32_t Min_Element = arr[SortingAlgrothim::GetMinIndex(arr,0,size)];
-    uint32_t Range=Max_Element-Min_Element +1;
-    T * Count_Arr=new T[Range]{0};
-    uint32_t index=0;
-    for(uint32_t i =0 ; i<size ;i++)
+    uint32_t Range = Max_Element - Min_Element + 1;
+    DynamicArray<T> Count_Arr(Range);
+    uint32_t index = 0;
+    
+    for (uint32_t i =0 ; i < size ; i++)
     {
         Count_Arr[arr[i]-Min_Element]++;
     }
-    if(SortingType == SortingType_t::ASCENDING)
+    if (SortingType == SortingType_t::ASCENDING)
     {
-        for (uint32_t i = 0 ; i<Range ; i++)
+        for (uint32_t i = 0 ; i < Range ; i++)
         {
-            while (Count_Arr[i]!=0)
+            while (Count_Arr[i] != 0)
             {
-                arr[index]=i+Min_Element;
+                arr[index] = i + Min_Element;
                 Count_Arr[i]--;
                 index++; 
             }
@@ -100,17 +102,16 @@ void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t Sor
     }
     else if (SortingType == SortingType_t::DESCENDING)
     {  
-      for (int32_t i = Range-1 ; i>=0; i--)
+      for (int32_t i = Range - 1 ; i >= 0; i--)
         {
-            while (Count_Arr[i]!=0)
+            while (Count_Arr[i] != 0)
             {
-                arr[index]=i+Min_Element;
+                arr[index] = i + Min_Element;
                 Count_Arr[i]--;
                 index++; 
             }     
         }
     }
-    delete [] Count_Arr;
 }
 
 
