@@ -6,7 +6,7 @@
 using namespace DSA::DS::dynamic_array;
 
 template<typename T>
-DynamicArray<T>::DynamicArray(uint32_t size) : size(size), CurrentIndex(0), pArray(new T[size])
+DynamicArray<T>::DynamicArray(uint32_t size) : size(size), CurrentIndex(0), pArray(new T[size]{0})
 { }
 
 template<typename T>
