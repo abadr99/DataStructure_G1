@@ -12,7 +12,7 @@ static int32_t AscendingArr[]          = {-2,-1,0,2,2,4,5,5,7,8,9,10};
 static int32_t DescendingArr[]         = {10,9,8,7,5,5,4,2,2,0,-1,-2};
 static uint32_t ArrayIterator = 0;
 
-static void RESET() {
+inline static void RESET() {
     ArrayIterator = 0;
     Arr[0] = -1;    Arr[1]  = 5;    Arr[2]  =  2;
     Arr[3] =  5;    Arr[4]  = 2;    Arr[5]  =  0;
