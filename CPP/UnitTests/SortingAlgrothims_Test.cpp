@@ -92,3 +92,22 @@ TEST(SORTING_COUNTING)
     RESET();
 
 }
+TEST(SORTING_QUICK)
+{
+        
+    START_TEST(QUICK_SORT_ASCENDING);
+    SortingAlgrothim<int32_t>::QuickSort(Arr,ArrSize,SortingType_t::ASCENDING);
+    for(auto element : Arr) {
+        EXPECT_EQ(element, AscendingArr[ArrayIterator]);
+        ArrayIterator++;
+    }
+    RESET();
+    // START_TEST(QUICK_SORT_DESCENDING);
+    // SortingAlgrothim<int32_t>::QuickSort(Arr,ArrSize,SortingType_t::DESCENDING);
+    // for(auto element : Arr) {
+    //     EXPECT_EQ(element, DescendingArr[ArrayIterator]);
+    //     ArrayIterator++;
+    // }
+    // RESET();
+
+}

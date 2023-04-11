@@ -45,6 +45,7 @@ public:
 private:
     static uint32_t GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
     static uint32_t GetMaxIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
+    static void Helper_QuickSort(T Array[] , uint32_t Fisrt_Idx , uint32_t Last_Idx , SortingType_t SortingType);
     static void Swap(T& First,T& Second);
 };
 

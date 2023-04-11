@@ -6,7 +6,8 @@
 
 
 using namespace DSA::Algrothim::Sort;
-
+#define PIVOT_AT_RIGHT 3 
+#define PIVOT_AT_LEFT  2 
 template<typename T>
 void SortingAlgrothim<T>::SelectionSort(T arr[], uint32_t size, SortingType_t SortingType)  {
     uint32_t UnSortedIterator;
@@ -112,8 +113,78 @@ void SortingAlgrothim<T>::CountingSort(T arr[], uint32_t size, SortingType_t Sor
     }
     delete [] Count_Arr;
 }
+template<typename T>
+void SortingAlgrothim<T>:: QuickSort(T arr[], uint32_t size, SortingType_t SortingType )
+{
+    Helper_QuickSort(arr ,  0 , size-1 , SortingType);
+}
+template<typename T>
+ void SortingAlgrothim<T>::Helper_QuickSort(T Array[] , uint32_t Fisrt_Idx , uint32_t Last_Idx , SortingType_t SortingType)
+{
 
+    uint32_t Pivot_idx    = Fisrt_Idx ;
+    uint32_t Iterator     = 0 ;
+    uint32_t Start_Idx    = Fisrt_Idx ;
+    uint32_t End_Idx      = Last_Idx ; 
+    uint8_t  Pivot_State  = PIVOT_AT_LEFT ; 
 
+    /* Base case for recursion :
+      --> Array has one element  
+    */
+    if(Fisrt_Idx >= Last_Idx ){
+      return ;
+    }
+
+    for(Iterator=Fisrt_Idx ; Iterator <Last_Idx ; Iterator++){
+
+        if(SortingType == SortingType_t::ASCENDING){
+
+            if(Pivot_State  == PIVOT_AT_LEFT && Array[Pivot_idx]>Array[End_Idx] ){
+                Swap(Array[Pivot_idx], Array[End_Idx]);
+                Start_Idx++ ; 
+                Pivot_idx = End_Idx ; 
+                Pivot_State  = PIVOT_AT_RIGHT;
+
+            }else if(Pivot_State  == PIVOT_AT_RIGHT && Array[Start_Idx]>Array[Pivot_idx] ){
+                Swap(Array[Start_Idx],Array[End_Idx]);
+                End_Idx-- ; 
+                Pivot_idx = Start_Idx ; 
+                Pivot_State  = PIVOT_AT_LEFT;
+
+            }else{
+              if(Pivot_State  == PIVOT_AT_LEFT ){
+                End_Idx-- ; 
+              }else if(Pivot_State  == PIVOT_AT_RIGHT ){
+                Start_Idx++ ; 
+              }
+            }
+        }else if(SortingType == SortingType_t::DESCENDING){
+            
+            if(Pivot_State  == PIVOT_AT_LEFT && Array[Pivot_idx] < Array[End_Idx] ){
+                Swap(Array[Pivot_idx], Array[End_Idx]);
+                Start_Idx++ ; 
+                Pivot_idx = End_Idx ; 
+                Pivot_State  = PIVOT_AT_RIGHT;
+
+            }else if(Pivot_State  == PIVOT_AT_RIGHT && Array[Start_Idx] < Array[Pivot_idx] ){
+                Swap(Array[Start_Idx],Array[End_Idx]);
+                End_Idx-- ; 
+                Pivot_idx = Start_Idx ; 
+                Pivot_State  = PIVOT_AT_LEFT;
+
+            }else{
+              if(Pivot_State  == PIVOT_AT_LEFT ){
+                End_Idx-- ; 
+              }else if(Pivot_State  == PIVOT_AT_RIGHT ){
+                Start_Idx++ ; 
+              }
+            }
+        }
+
+    }
+    Helper_QuickSort(Array , Fisrt_Idx   , Pivot_idx-1 , SortingType);    //Pass Left  Sup Array of Pivot to Quick Sort fun
+    Helper_QuickSort(Array , Pivot_idx+1 , Last_Idx    , SortingType );   //Pass Right Sup Array of Pivot  to Quick Sort fun
+}
 template<typename T>
 uint32_t SortingAlgrothim<T>::GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex) {
     uint32_t Iterator = FirstIndex;
