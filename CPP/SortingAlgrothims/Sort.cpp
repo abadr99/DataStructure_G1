@@ -145,6 +145,71 @@ void SortingAlgrothim<T>::Swap(T& First,T& Second)
     Second = First - Second;
     First  = First - Second;
 }
+template<typename T>
+void SortingAlgrothim<T>::MergeSort(T arr[], uint32_t size, SortingType_t SortingType )
+{
+    if(size<=1){
+        return;
+    }
+    MergSortSubArrays<T> LocSubArrys;
+    uint32_t Mid = size/2 ; 
+    uint32_t _1stIrerator=0 ;
+    uint32_t _2ndIrerator=0 ;
 
+    LocSubArrys._pRightdArr = new T[Mid];
+    LocSubArrys._pLeftArr   = new T[size - Mid];
+
+    for(_1stIrerator=0 ; _1stIrerator < size-Mid ;  _1stIrerator++){
+        LocSubArrys._pLeftArr[_1stIrerator] = arr[_2ndIrerator++];
+    }
+    for(_1stIrerator=0 ; _1stIrerator < Mid ;  _1stIrerator++){
+        LocSubArrys._pRightdArr[_1stIrerator] = arr[_2ndIrerator++];
+    }
+
+    LocSubArrys._1stArrSize = size - Mid ; 
+    LocSubArrys._2ndArrSize = Mid ; 
+
+    MergeSort(LocSubArrys._pLeftArr   , size-Mid , SortingType);
+    MergeSort(LocSubArrys._pRightdArr , Mid      , SortingType);
+
+    Helper_MergeSort(LocSubArrys , arr, size , SortingType);
+    delete []LocSubArrys._pRightdArr;
+    delete []LocSubArrys._pLeftArr;
+} 
+template<typename  T>
+void SortingAlgrothim<T>:: Helper_MergeSort (MergSortSubArrays<T> SubArrays ,  T SortedArr[] ,  uint32_t size , SortingType_t SortingType)
+{
+    uint32_t _1stIrerator=0 ;
+    uint32_t _2ndIrerator=0 ; 
+    uint32_t _3rdIrerator=0 ; 
+
+    while (_1stIrerator < SubArrays._1stArrSize &&  _2ndIrerator < SubArrays._2ndArrSize)
+    {
+        if(SortingType == SortingType_t::ASCENDING){
+            if(SubArrays._pLeftArr[_1stIrerator] > SubArrays._pRightdArr[_2ndIrerator] ){
+                SortedArr[_3rdIrerator++]=SubArrays._pRightdArr[_2ndIrerator++];
+
+            }else if(SubArrays._pLeftArr[_1stIrerator] <= SubArrays._pRightdArr[_2ndIrerator] ){
+                SortedArr[_3rdIrerator++]=SubArrays._pLeftArr[_1stIrerator++];
+            }
+            
+        }else if(SortingType == SortingType_t::DESCENDING){
+            if(SubArrays._pLeftArr[_1stIrerator] < SubArrays._pRightdArr[_2ndIrerator] ){
+                SortedArr[_3rdIrerator++]=SubArrays._pRightdArr[_2ndIrerator++];
+
+            }else if(SubArrays._pLeftArr[_1stIrerator] >= SubArrays._pRightdArr[_2ndIrerator] ){
+                SortedArr[_3rdIrerator++]=SubArrays._pLeftArr[_1stIrerator++];
+            }
+        }
+    }
+
+    while(_1stIrerator < SubArrays._1stArrSize){
+        SortedArr[_3rdIrerator++]=SubArrays._pLeftArr[_1stIrerator++];
+    }
+
+    while(_2ndIrerator < SubArrays._2ndArrSize){
+        SortedArr[_3rdIrerator++]=SubArrays._pRightdArr[_2ndIrerator++];
+    }
+}
 
 INSTANTIATE_CLASS_TEMPLATES(SortingAlgrothim);
