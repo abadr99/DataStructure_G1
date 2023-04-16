@@ -11,6 +11,14 @@ enum SortingType_t{
 };
 
 template<typename T>
+struct MergSortSubArrays{
+    T *_pLeftArr;
+    T *_pRightdArr;
+    uint32_t _1stArrSize;
+    uint32_t _2ndArrSize;
+}; 
+
+template<typename T>
 class SortingAlgrothim {
 public:
     static void BubbleSort(T arr[], uint32_t size,
@@ -45,6 +53,7 @@ public:
 private:
     static uint32_t GetMinIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
     static uint32_t GetMaxIndex(T arr[], uint32_t FirstIndex, uint32_t LastIndex);
+    static void Helper_MergeSort (MergSortSubArrays<T> SubArrays ,  T SortedArr[] ,  uint32_t size , SortingType_t SortingType);
     static void Swap(T& First,T& Second);
 };
 
