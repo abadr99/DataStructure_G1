@@ -3,6 +3,7 @@
 #include "BST_Test.h"
 #include "SortingAlgrothims_Test.h"
 #include "DynamicArray_Test.h"
+#include "PriorityQueue_naive_test.h"
 
 void RUN_UNIT_TESTS() {
     RUN_TEST(BST_Insert);
@@ -13,4 +14,5 @@ void RUN_UNIT_TESTS() {
     RUN_TEST(SORTING_Selection);
     RUN_TEST(SORTING_COUNTING);
     RUN_TEST(dynamic_array);
+    RUN_TEST(priority_queue_naive);
 }
