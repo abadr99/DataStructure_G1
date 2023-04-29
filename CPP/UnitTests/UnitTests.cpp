@@ -14,5 +14,6 @@ void RUN_UNIT_TESTS() {
     RUN_TEST(SORTING_Selection);
     RUN_TEST(SORTING_COUNTING);
     RUN_TEST(dynamic_array);
+    RUN_TEST(SORTING_MERG);
     RUN_TEST(priority_queue_naive);
 }

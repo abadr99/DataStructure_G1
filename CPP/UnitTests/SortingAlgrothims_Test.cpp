@@ -92,3 +92,21 @@ TEST(SORTING_COUNTING)
     RESET();
 
 }
+TEST(SORTING_MERG)
+{
+    START_TEST(MERGING_SORT_ASCENDING);
+    SortingAlgrothim<int32_t>::MergeSort(Arr,ArrSize,SortingType_t::ASCENDING);
+    for(auto element : Arr) {
+        EXPECT_EQ(element, AscendingArr[ArrayIterator]);
+        ArrayIterator++;
+    }
+    RESET();
+    START_TEST(MERGING_SORT_DESCENDING);
+    SortingAlgrothim<int32_t>::MergeSort(Arr,ArrSize,SortingType_t::DESCENDING);
+    for(auto element : Arr) {
+        EXPECT_EQ(element, DescendingArr[ArrayIterator]);
+        ArrayIterator++;
+    }
+    RESET();
+
+}
