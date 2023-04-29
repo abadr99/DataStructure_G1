@@ -29,7 +29,6 @@ namespace naive {
 template<typename T>
 class PriorityQueue {
 public:
-    PriorityQueue();
     void Insert(const T& data);
     T ExtractMax();
     T GetMax() const;
