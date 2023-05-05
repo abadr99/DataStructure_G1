@@ -20,6 +20,7 @@
 #include <list>
 #include <iterator>
 #include <algorithm>
+#include "BinaryHeap.h"
 
 namespace DSA {
 namespace DS {
@@ -32,13 +33,30 @@ public:
     void Insert(const T& data);
     T ExtractMax();
     T GetMax() const;
-    void Remove(const T& element);
-    void ChangePriority(const T& element, uint32_t newPrio);
+    void Remove(const T& element); // TODO : Modify this to deal with index instead of values
+    void ChangePriority(const T& element, uint32_t newPrio); // TODO : Modify this to deal with index instead of values
 private:
     std::list<T> queueList;
     typename std::list<T>::iterator findValue(const T& value);
 };
 
-}}}} // DSA::DS::priority_queue::naive
+} // DSA::DS::priority_queue::naive
+
+namespace heap {
+    // TODO : Add some unit tests for this DS
+template<typename T>
+class PriorityQueue {
+public:
+    void Insert(const T& data);
+    T ExtractMax();
+    T GetMax() const;
+    void Remove(const uint32_t idx);
+    void ChangePriority(const uint32_t idx, uint32_t newPrio);
+private:
+    DSA::DS::binary_heap::MaxHeap<T> heap;
+};
+} // DSA::DS::priority_queue::heap
+
+}}} 
 
 #endif //__PRIORITY_QUEUE_H_

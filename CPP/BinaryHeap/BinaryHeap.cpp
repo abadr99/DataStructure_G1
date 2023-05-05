@@ -124,16 +124,16 @@ void MaxHeap<T>::Remove(uint32_t idx) {
 }
 
 template<typename T>
-void MaxHeap<T>::ChangePriority(uint32_t idx, uint32_t newPrio) {
+void MaxHeap<T>::ChangeValue(uint32_t idx, uint32_t newVal) {
     assert(idx < heap.size() && "calling ChangePriority() with index out of heap boundry");
-    uint32_t oldPrio = heap[idx];
+    uint32_t oldVal = heap[idx];
     
     // 1) Change the priority of node
-    heap[idx] = newPrio;
+    heap[idx] = newVal;
 
     // 2) Now we have to adjust the prioirty to aviod violations
     //    and it dependes on the old priority value
-    if (newPrio > oldPrio) {
+    if (newVal > oldVal) {
         ShiftUp(idx);
     } 
     else {
@@ -145,4 +145,10 @@ template<typename T>
 uint32_t MaxHeap<T>::GetSize() const {
     return heap.size();
 }
+
+template<typename T>
+std::vector<T> MaxHeap<T>::GetHeap() const {
+    return heap;
+}
+
 INSTANTIATE_CLASS_TEMPLATES(MaxHeap);

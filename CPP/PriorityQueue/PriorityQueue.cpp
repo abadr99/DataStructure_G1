@@ -6,7 +6,9 @@
 #include "PriorityQueue.h"
 
 namespace naive = DSA::DS::priority_queue::naive;
+namespace heap  = DSA::DS::priority_queue::heap;
 
+// --------------------------- NAIVE SOLUTION ------------------------------------------
 template<typename T>
 void naive::PriorityQueue<T>::Insert(const T& data) {
     queueList.push_back(data);
@@ -81,4 +83,30 @@ typename std::list<T>::iterator naive::PriorityQueue<T>::findValue(const T& valu
     return queueList.end();
 }
 
+//  --------------------------- HEAP SOLUTION ------------------------------------------
+template<typename T>
+void heap::PriorityQueue<T>::Insert(const T& data) {
+    heap.Insert(data);
+}
+
+template<typename T>
+T heap::PriorityQueue<T>::ExtractMax() {
+    return heap.ExtractMax();
+}
+template<typename T>
+T heap::PriorityQueue<T>::GetMax() const {
+    return heap.GetSize();
+}
+
+template<typename T>
+void heap::PriorityQueue<T>::Remove(const uint32_t idx) {
+    heap.Remove(idx);
+}
+
+template<typename T>
+void heap::PriorityQueue<T>::ChangePriority(const uint32_t idx, uint32_t newPrio) {
+    heap.ChangeValue(idx,newPrio);
+}
+
 INSTANTIATE_CLASS_TEMPLATES(naive::PriorityQueue);
+INSTANTIATE_CLASS_TEMPLATES(heap::PriorityQueue);

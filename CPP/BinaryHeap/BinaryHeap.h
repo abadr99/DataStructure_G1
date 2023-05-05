@@ -15,11 +15,9 @@ public:
     T GetMax() const;
     uint32_t GetSize() const;
     void Remove(uint32_t idx);
-    void ChangePriority(uint32_t idx, uint32_t newPrio);
-
-#ifndef __TEST
+    void ChangeValue(uint32_t idx, uint32_t newVal);
+    std::vector<T> GetHeap() const;
 private:
-#endif
     std::vector<T> heap;
     uint32_t GetParent(uint32_t idx);
     uint32_t GetLeftChild(uint32_t idx);
