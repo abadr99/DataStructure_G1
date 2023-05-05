@@ -17,6 +17,10 @@ all:
 build:
 	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
 
+utests:
+	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
+	./DSA.o uTest
+
 clean:
 	@echo CLEANING ..........
 	@rm -rf *.o
