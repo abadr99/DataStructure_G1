@@ -31,14 +31,15 @@ TEST(MAX_HEAP)
     Heap.Insert(18);
     Heap.Insert(12);
     Heap.Insert(11);
-    EXPECT_EQ(42,Heap.heap[0]);
-    EXPECT_EQ(29,Heap.heap[1]);
-    EXPECT_EQ(18,Heap.heap[2]);
-    EXPECT_EQ(14,Heap.heap[3]);
-    EXPECT_EQ(7,Heap.heap[4]);
-    EXPECT_EQ(18,Heap.heap[5]);
-    EXPECT_EQ(12,Heap.heap[6]);
-    EXPECT_EQ(11,Heap.heap[7]);
+    std::vector<int> MyHeap = Heap.GetHeap();
+    EXPECT_EQ(42,MyHeap[0]);
+    EXPECT_EQ(29,MyHeap[1]);
+    EXPECT_EQ(18,MyHeap[2]);
+    EXPECT_EQ(14,MyHeap[3]);
+    EXPECT_EQ(7,MyHeap[4]);
+    EXPECT_EQ(18,MyHeap[5]);
+    EXPECT_EQ(12,MyHeap[6]);
+    EXPECT_EQ(11,MyHeap[7]);
     
     START_TEST(MAX_HEAP_ExtractMax);
     int max = 0;
@@ -83,27 +84,27 @@ TEST(MAX_HEAP)
 
     START_TEST(MAX_HEAP_Remove);
     Heap.Remove(0);
-    EXPECT_EQ(29,Heap.heap[0]);
-    EXPECT_EQ(14,Heap.heap[1]);
-    EXPECT_EQ(18,Heap.heap[2]);
-    EXPECT_EQ(11,Heap.heap[3]);
-    EXPECT_EQ(7,Heap.heap[4]);
-    EXPECT_EQ(18,Heap.heap[5]);
-    EXPECT_EQ(12,Heap.heap[6]);
+    MyHeap = Heap.GetHeap();
+    EXPECT_EQ(29,MyHeap[0]);
+    EXPECT_EQ(14,MyHeap[1]);
+    EXPECT_EQ(18,MyHeap[2]);
+    EXPECT_EQ(11,MyHeap[3]);
+    EXPECT_EQ(7,MyHeap[4]);
+    EXPECT_EQ(18,MyHeap[5]);
+    EXPECT_EQ(12,MyHeap[6]);
     max = Heap.GetMax();
     EXPECT_EQ(29,max);
     Heap.Remove(3);
-    EXPECT_EQ(29,Heap.heap[0]);
-    EXPECT_EQ(14,Heap.heap[1]);
-    EXPECT_EQ(18,Heap.heap[2]);
-    EXPECT_EQ(12,Heap.heap[3]);
-    EXPECT_EQ(7,Heap.heap[4]);
-    EXPECT_EQ(18,Heap.heap[5]);
+    MyHeap = Heap.GetHeap();
+    EXPECT_EQ(29,MyHeap[0]);
+    EXPECT_EQ(14,MyHeap[1]);
+    EXPECT_EQ(18,MyHeap[2]);
+    EXPECT_EQ(12,MyHeap[3]);
+    EXPECT_EQ(7,MyHeap[4]);
+    EXPECT_EQ(18,MyHeap[5]);
 
     START_TEST(MAX_HEAP_changePrio);
-    Heap.ChangePriority(3,100);
+    Heap.ChangeValue(3,100);
     max = Heap.GetMax();
     EXPECT_EQ(100,max);
 }
-
-#undef __TEST

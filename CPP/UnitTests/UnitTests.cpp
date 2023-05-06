@@ -3,6 +3,7 @@
 #include "BST_Test.h"
 #include "SortingAlgrothims_Test.h"
 #include "DynamicArray_Test.h"
+#include "PriorityQueue_naive_test.h"
 #include "MaxHeap_Test.h"
 
 void RUN_UNIT_TESTS() {
@@ -15,5 +16,6 @@ void RUN_UNIT_TESTS() {
     RUN_TEST(SORTING_COUNTING);
     RUN_TEST(dynamic_array);
     RUN_TEST(SORTING_MERG);
+    RUN_TEST(priority_queue_naive);
     RUN_TEST(MAX_HEAP);
 }
