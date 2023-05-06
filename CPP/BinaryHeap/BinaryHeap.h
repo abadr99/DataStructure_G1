@@ -24,7 +24,7 @@ private:
     uint32_t GetRightChild(uint32_t idx);
     void ShiftDown(uint32_t idx);
     void ShiftUp(uint32_t idx);
-    T& operator[](uint32_t idx)
+    T& operator[](uint32_t idx);
     void Swap(T& data1, T& data2);
 };
 
