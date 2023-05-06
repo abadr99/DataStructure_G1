@@ -151,4 +151,8 @@ std::vector<T> MaxHeap<T>::GetHeap() const {
     return heap;
 }
 
+template<typename T>
+T& MaxHeap<T>::operator[](uint32_t idx) {
+    return heap[idx];
+}
 INSTANTIATE_CLASS_TEMPLATES(MaxHeap);
