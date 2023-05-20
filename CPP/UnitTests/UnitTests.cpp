@@ -5,6 +5,7 @@
 #include "DynamicArray_Test.h"
 #include "PriorityQueue_naive_test.h"
 #include "MaxHeap_Test.h"
+#include "disjoint_set_naive_test.h"
 
 void RUN_UNIT_TESTS() {
     RUN_TEST(BST_Insert);
@@ -18,4 +19,5 @@ void RUN_UNIT_TESTS() {
     RUN_TEST(SORTING_MERG);
     RUN_TEST(priority_queue_naive);
     RUN_TEST(MAX_HEAP);
+	RUN_TEST(disjoint_set_naive);
 }
