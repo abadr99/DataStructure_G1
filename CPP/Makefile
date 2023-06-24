@@ -1,33 +1,43 @@
-CC := g++
-CCFLAGS:= -fdiagnostics-color=always -g -Wall #-c 
+CC:= g++
+CCFLAGS:= -fdiagnostics-color=always -g -Wall -std=c++17
+
+UNIT_TEST_OPT:= uTest
+TARGET:= DSA
 
 DIRS := $(shell cat ./build.dir)
-
-#Stack/Stack.cpp
 SRC_PATH :=  $(foreach dir,$(DIRS),$(dir)) 
-SOURCES  :=  $(foreach S,$(SRC_PATH),$(wildcard $(S)/*.cpp)) 
-INC :=  $(foreach dir,$(DIRS), -I$(dir))
+SOURCES  :=  $(foreach S,$(SRC_PATH),$(wildcard $(S)/*.cpp))
+SOURCES_COUNT:= $(words $(SOURCES))
+SOURCES_CTR:=0
+SOURCES += ./main.cpp
+INC:=  $(foreach dir,$(DIRS), -I$(dir))
+OBJS:= $(SOURCES:.cpp=.o)
 
-Command := $(firstword $(MAKECMDGOALS))
-Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
-all:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
+.PHONY: all clean build utests test
 
-build:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
+all:build
 
-utests:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
-	./DSA.o uTest
+build: $(OBJS)
+	@$(CC) $(CCFLAGS) $(OBJS) -o $(TARGET)
+	@echo "\n[Makefile] : Compiled successfully."
 
+utests:build
+	./$(TARGET) $(UNIT_TEST_OPT)
+
+%.o : %.cpp
+	@$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+	@$(eval SOURCES_CTR=$(shell echo $$(($(SOURCES_CTR)+1))))
+	@printf '\033[2K\r%s' "[Makefile] : [$(SOURCES_CTR)/$(words $(SOURCES))] $<"
+	
 clean:
-	@echo CLEANING ..........
+	@find . -name "*.o" -type f -delete
+	@rm -rf build
 	@rm -rf *.o
 	@rm -rf *.bin
 	@rm -rf *.exe
 	@rm -rf *.dot
-	@echo DONE ..........
+	@echo [Makefile] : Cleaning done successfully.
 
 test:
 	@python3 Utils/TestCompare.py $(args) 
