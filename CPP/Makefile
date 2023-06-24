@@ -7,10 +7,11 @@ TARGET:= DSA
 DIRS := $(shell cat ./build.dir)
 SRC_PATH :=  $(foreach dir,$(DIRS),$(dir)) 
 SOURCES  :=  $(foreach S,$(SRC_PATH),$(wildcard $(S)/*.cpp))
+SOURCES_COUNT:= $(words $(SOURCES))
+SOURCES_CTR:=0
 SOURCES += ./main.cpp
 INC:=  $(foreach dir,$(DIRS), -I$(dir))
 OBJS:= $(SOURCES:.cpp=.o)
-
 
 
 .PHONY: all clean build utests test
@@ -18,14 +19,17 @@ OBJS:= $(SOURCES:.cpp=.o)
 all:build
 
 build: $(OBJS)
-	$(CC) $(CCFLAGS) $(OBJS) -o $(TARGET)
+	@$(CC) $(CCFLAGS) $(OBJS) -o $(TARGET)
+	@echo "\n[Makefile] : Compiled successfully."
 
 utests:build
 	./$(TARGET) $(UNIT_TEST_OPT)
 
 %.o : %.cpp
-	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
-
+	@$(CC) $(CCFLAGS) $(INC) -c $< -o $@
+	@$(eval SOURCES_CTR=$(shell echo $$(($(SOURCES_CTR)+1))))
+	@printf '\033[2K\r%s' "[Makefile] : [$(SOURCES_CTR)/$(words $(SOURCES))] $<"
+	
 clean:
 	@find . -name "*.o" -type f -delete
 	@rm -rf build
