@@ -36,6 +36,7 @@ help:
 	@echo "make 	   -->  build the cpp project and run the output"
 	@echo "make clean -->  clean all executables, binaries and dot files"
 	@echo "make build -->  build ONLY without running" 
+	@echo "make utests -->  build and run all unit-tests" 
 	@echo "make test args=\"VAR1 VAR2 VAR3\" -->  used to run the test where :"
 	@echo "		VAR1 : Path of the executable" 
 	@echo "		VAR2 : Path of input file" 
