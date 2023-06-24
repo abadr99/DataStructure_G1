@@ -1,33 +1,42 @@
-CC := g++
-CCFLAGS:= -fdiagnostics-color=always -g -Wall #-c 
+CC:= g++
+CCFLAGS:= -fdiagnostics-color=always -g -Wall
+
+UNIT_TEST_OPT:= uTest
+TARGET:= DSA
 
 DIRS := $(shell cat ./build.dir)
-
-#Stack/Stack.cpp
 SRC_PATH :=  $(foreach dir,$(DIRS),$(dir)) 
-SOURCES  :=  $(foreach S,$(SRC_PATH),$(wildcard $(S)/*.cpp)) 
-INC :=  $(foreach dir,$(DIRS), -I$(dir))
+SOURCES  :=  $(foreach S,$(SRC_PATH),$(wildcard $(S)/*.cpp))
+SOURCES += ./main.cpp
+INC:=  $(foreach dir,$(DIRS), -I$(dir))
+OBJS:= $(SOURCES:.cpp=.o)
 
-Command := $(firstword $(MAKECMDGOALS))
-Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+# Command := $(firstword $(MAKECMDGOALS))
+# Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
-all:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
+.PHONY: all clean build utests test
 
-build:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
+all:build
+dbg:
+	@echo $(OBJS)
 
-utests:
-	@$(CC) $(CCFLAGS) $(SOURCES) $(INC) main.cpp -o DSA.o
-	./DSA.o uTest
+build: $(OBJS)
+	$(CC) $(CCFLAGS) $(OBJS) -o $(TARGET)
+
+utests:build
+	./$(TARGET) $(UNIT_TEST_OPT)
+
+%.o : %.cpp
+	$(CC) $(CCFLAGS) $(INC) -c $< -o $@
 
 clean:
-	@echo CLEANING ..........
+	@find . -name "*.o" -type f -delete
+	@rm -rf build
 	@rm -rf *.o
 	@rm -rf *.bin
 	@rm -rf *.exe
 	@rm -rf *.dot
-	@echo DONE ..........
+	@echo [Makefile] : Cleaning done successfully.
 
 test:
 	@python3 Utils/TestCompare.py $(args) 
