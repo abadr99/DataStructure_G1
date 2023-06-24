@@ -1,5 +1,5 @@
 CC:= g++
-CCFLAGS:= -fdiagnostics-color=always -g -Wall
+CCFLAGS:= -fdiagnostics-color=always -g -Wall -std=c++17
 
 UNIT_TEST_OPT:= uTest
 TARGET:= DSA
