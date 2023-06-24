@@ -11,14 +11,11 @@ SOURCES += ./main.cpp
 INC:=  $(foreach dir,$(DIRS), -I$(dir))
 OBJS:= $(SOURCES:.cpp=.o)
 
-# Command := $(firstword $(MAKECMDGOALS))
-# Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+
 
 .PHONY: all clean build utests test
 
 all:build
-dbg:
-	@echo $(OBJS)
 
 build: $(OBJS)
 	$(CC) $(CCFLAGS) $(OBJS) -o $(TARGET)
