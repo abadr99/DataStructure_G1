@@ -10,3 +10,4 @@ UnitTests
 DynamicArray
 PriorityQueue
 BinaryHeap
+DisjointSet
